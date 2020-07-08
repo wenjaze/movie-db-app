@@ -12,13 +12,11 @@
         android:layout_width="224dp"
         android:layout_height="0dp"
         android:layout_marginTop="332dp"
-        android:layout_marginBottom="258dp"
         android:background="#FFB5B5"
         android:onClick="changeActivity"
         android:text="CHANGE"
         android:textColor="#ED5555"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textView"
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
