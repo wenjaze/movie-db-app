@@ -12,37 +12,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         findViewById<FrameLayout>(R.id.frameLayout)?.let {
-            savedInstanceState?.let {return;}
+            savedInstanceState ?.let { return; }
 
             supportFragmentManager.commit {
-                add<Frag_first>(R.id.frameLayout, null, intent.extras)
+                add<FirstFragment>(R.id.frameLayout, null, intent.extras)
             }
         }
-
-        val button = findViewById(R.id.switchButton) as Button
-
-        button.setOnClickListener{
-            change()
-        }
-
-    }
-    var pressed:Boolean = false
-
-   fun change() {
-        //Log.d("message:","$pressed")
-        if(pressed==true) {
-            supportFragmentManager.popBackStack()
-            pressed = false
-        }
-
-        else {
-            supportFragmentManager.commit {
-                replace<Frag_second>(R.id.frameLayout, null, intent.extras)
-                addToBackStack(null)
-            }
-            pressed = true
-        }
-
-
     }
 }

@@ -4,7 +4,7 @@
     android:id="@+id/fragment1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Frag_first">
+    tools:context=".FirstFragment">
 
     <TextView
         android:id="@+id/textView"
@@ -16,5 +16,15 @@
         android:background="@color/coral"
         android:textSize="30sp"
         android:textColor="@color/white"/>
+
+    <Button
+        android:id="@+id/switch_button"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="@dimen/button_height"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/margin_big"
+        android:text="@string/button1_text"
+        android:textSize="@dimen/medium_text"
+        />
 
 </FrameLayout>

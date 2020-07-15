@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">fragments</string>
-    <string name="switchText">Switch</string>
     <string name="frag_first_text">Fragment 1</string>
     <string name="frag_second_text">Fragment 2</string>
+    <string name="button1_text">switch to Second Fragment</string>
+    <string name="button2_text">switch to First Fragment</string>
 </resources>
