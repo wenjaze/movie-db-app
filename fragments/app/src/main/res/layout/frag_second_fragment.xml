@@ -13,7 +13,8 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:text="@string/frag_second_text"
-        android:background="#f08080"
-        android:textSize="30sp" />
+        android:background="@color/coral"
+        android:textSize="30sp"
+        android:textColor="@color/white"/>
 
 </FrameLayout>
