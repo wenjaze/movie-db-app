@@ -6,10 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-
+import kotlinx.android.synthetic.main.item_movie.*
+import kotlinx.android.synthetic.main.item_movie.view.*
 
 class SecondFragment : Fragment() {
-
+    var movieTitle : String? = ""
     companion object {
         fun newInstance() = SecondFragment()
     }
@@ -17,13 +18,18 @@ class SecondFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ) = inflater.inflate(R.layout.fragment_second, container, false)
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    ) : View? {
+        val rootView = inflater.inflate(R.layout.fragment_second, container, false)
+        movieTitle = arguments?.getString("movieTitle")
+        rootView.movie_title.text = movieTitle
+        return rootView
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    /*override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+    }*/
+
+    /*override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val button = getView()?.findViewById(R.id.switch_button) as Button
         button.setOnClickListener(){
             val firstFragment = FirstFragment()
@@ -37,5 +43,5 @@ class SecondFragment : Fragment() {
         transaction?.addToBackStack(null)
         transaction?.commit()
 
-    }
+    }*/
 }
