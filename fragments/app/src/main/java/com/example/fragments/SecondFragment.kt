@@ -5,8 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import kotlinx.android.synthetic.main.item_movie.*
 import kotlinx.android.synthetic.main.item_movie.view.*
 
 class SecondFragment : Fragment() {
