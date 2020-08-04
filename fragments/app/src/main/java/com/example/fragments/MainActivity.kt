@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         findViewById<FrameLayout>(R.id.frameLayout)?.let {
-            savedInstanceState ?.let { return; }
+            savedInstanceState?.let { return; }
 
             supportFragmentManager.commit {
                 add<FirstFragment>(R.id.frameLayout, null, intent.extras)

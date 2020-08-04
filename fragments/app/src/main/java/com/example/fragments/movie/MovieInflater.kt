@@ -1,7 +1,7 @@
-package com.example.fragments
+package com.example.fragments.movie
 
-data class Movie(val title:String,val id:String) {
-    companion object {
+class MovieInflater {
+    companion object{
         fun createTrialList() : ArrayList<Movie> {
             val movies = ArrayList<Movie>()
             for (i in 1..10){
@@ -10,4 +10,5 @@ data class Movie(val title:String,val id:String) {
             return movies
         }
     }
+
 }
