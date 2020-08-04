@@ -48,9 +48,11 @@ class FirstFragment : Fragment(), onMovieItemClickListener {
     }
 
     private fun switchToSecondFragment(fragment: Fragment) {
-        val transaction = activity?.supportFragmentManager?.beginTransaction()
-        transaction?.replace(R.id.frameLayout, fragment)
-        transaction?.addToBackStack(null)
-        transaction?.commit()
+        activity?.supportFragmentManager?.beginTransaction()?.run {
+            replace(R.id.frameLayout, fragment)
+            addToBackStack(null)
+            commit()
+        }
+
     }
 }
