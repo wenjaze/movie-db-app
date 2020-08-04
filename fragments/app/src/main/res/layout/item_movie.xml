@@ -15,5 +15,4 @@
         android:textAppearance="@style/MenuText"
         android:padding="@dimen/small_padding"
         app:layout_constraintTop_toTopOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
