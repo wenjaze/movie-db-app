@@ -31,7 +31,6 @@ class SearchFragment : Fragment(), onMovieItemClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         moviesList = MovieInflater.createTrialList()
         moviesAdapter = MoviesAdapter(moviesList, this)
-
         super.onCreate(savedInstanceState)
     }
 
