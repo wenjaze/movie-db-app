@@ -15,39 +15,50 @@
             android:id="@+id/moviesRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintHeight_percent=".9"
-            app:layout_constrainedHeight="true"
             android:background="@color/coral"
-            app:layout_constraintTop_toBottomOf="@id/searchBar"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constrainedHeight="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent=".9"
+            app:layout_constraintTop_toBottomOf="@id/searchBar">
 
-        <TableRow
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/searchBar"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintHeight_percent=".1"
+            android:orientation="horizontal"
+            android:gravity="center"
             app:layout_constrainedHeight="true"
             app:layout_constraintBottom_toTopOf="@id/moviesRecyclerView"
+            app:layout_constraintHeight_percent=".1"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:background="@color/white"
-            android:fitsSystemWindows="true"
-            >
+            app:layout_constraintRight_toRightOf="parent">
 
             <EditText
-                android:layout_width="300dp"
+                android:id="@+id/searchField"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
+                app:layout_constraintWidth_percent=".8"
+                app:layout_constrainedWidth="true"
                 android:textAppearance="@style/BaseText"
-                android:layout_column="0"/>
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/searchBtn"
+                app:layout_constraintLeft_toLeftOf="parent"/>
 
             <ImageButton
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_column="1"
+                android:id="@+id/searchBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/coral_bg_item"
                 android:src="@drawable/baseline_search_black_18dp"
-                />
-        </TableRow>
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/searchField"
+                app:layout_constraintRight_toRightOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
