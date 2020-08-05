@@ -5,10 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.fragment_second.view.*
+import kotlinx.android.synthetic.main.fragment_second.view.movie_title
 
 class SecondFragment : Fragment() {
-    var movieTitle: String? = ""
 
     companion object {
         fun newInstance() = SecondFragment()
@@ -19,8 +18,7 @@ class SecondFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val rootView = inflater.inflate(R.layout.fragment_second, container, false)
-        movieTitle = arguments?.getString("movieTitle")
-        rootView.movie_title.text = movieTitle
+        rootView.movie_title.text = arguments?.getString("movieTitle")
         return rootView
     }
 }
