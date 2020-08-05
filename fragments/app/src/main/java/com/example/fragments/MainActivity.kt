@@ -1,6 +1,8 @@
 package com.example.fragments
 
+import android.app.PendingIntent.getActivity
 import android.os.Bundle
+import android.view.WindowManager
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.add
@@ -10,12 +12,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        // Igy nem tunik el az
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         findViewById<FrameLayout>(R.id.frameLayout)?.let {
             savedInstanceState?.let { return; }
 
             supportFragmentManager.commit {
-                add<FirstFragment>(R.id.frameLayout, null, intent.extras)
+                add<SearchFragment>(R.id.frameLayout, null, intent.extras)
             }
         }
     }

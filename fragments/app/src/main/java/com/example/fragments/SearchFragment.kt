@@ -12,13 +12,13 @@ import com.example.fragments.movie.MovieInflater
 import layout.MoviesAdapter
 import layout.onMovieItemClickListener
 
-class FirstFragment : Fragment(), onMovieItemClickListener {
+class SearchFragment : Fragment(), onMovieItemClickListener {
 
     lateinit var moviesList: ArrayList<Movie>
     lateinit var moviesAdapter: MoviesAdapter
 
     companion object {
-        fun newInstance() = FirstFragment()
+        fun newInstance() = SearchFragment()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +31,7 @@ class FirstFragment : Fragment(), onMovieItemClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val rootView = inflater.inflate(R.layout.fragment_first, container, false)
+        val rootView = inflater.inflate(R.layout.fragment_search, container, false)
         val rvMovies = rootView.findViewById<View>(R.id.moviesRecyclerView) as? RecyclerView
         rvMovies?.layoutManager = LinearLayoutManager(this.context)
         rvMovies?.adapter = moviesAdapter
