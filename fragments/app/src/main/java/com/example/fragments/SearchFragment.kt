@@ -43,38 +43,36 @@ class SearchFragment : Fragment(), onMovieItemClickListener {
         return rootView
     }
 
-    private fun initRecyclerView(view: View){
+    private fun initRecyclerView(view: View) {
         val rvMovies = view.findViewById<View>(R.id.moviesRecyclerView) as? RecyclerView
         rvMovies?.layoutManager = LinearLayoutManager(this.context)
         rvMovies?.adapter = moviesAdapter
     }
 
     private fun initSearchBar(view: View) {
-        val timer = Timer()
-        val DELAY: Long = 500
         val searchField = view.findViewById<View>(R.id.searchField) as? EditText
-        delayedToast(DELAY, timer, searchField!!.text)
-        searchField.addTextChangedListener(
-            object : TextWatcher {
-                override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
-                override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
-                    delayedToast(DELAY, timer, searchField.text)
-                }
-                override fun afterTextChanged(s: Editable) {
-                    delayedToast(DELAY, timer, searchField.text)
-                }
+        var timer = Timer()
+        timerSchedule(timer, searchField!!.text, 500L)
+
+        searchField.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                timer.cancel()
+                timer = Timer()
+                timerSchedule(timer, searchField!!.text, 500L)
             }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        }
         )
+
     }
 
-    private fun delayedToast(delay: Long, debounceTimer: Timer, textToWrite: Editable) {
-        var nestedTimer: Timer = debounceTimer
-        nestedTimer.cancel()
-        nestedTimer = Timer()
-        nestedTimer.schedule(object : TimerTask() {
+    private fun timerSchedule(timer: Timer, textToWrite: Editable, delay: Long) {
+        timer.schedule(object : TimerTask() {
             override fun run() {
                 activity?.runOnUiThread {
-                    Toast.makeText(activity?.applicationContext, textToWrite, Toast.LENGTH_SHORT)
+                    Toast.makeText(activity?.applicationContext, textToWrite, Toast.LENGTH_LONG)
                         .show()
                 }
             }
