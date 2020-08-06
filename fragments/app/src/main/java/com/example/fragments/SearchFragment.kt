@@ -40,30 +40,43 @@ class SearchFragment : Fragment(), onMovieItemClickListener {
     ): View? {
         val rootView = inflater.inflate(R.layout.fragment_search, container, false)
         val rvMovies = rootView.findViewById<View>(R.id.moviesRecyclerView) as? RecyclerView
-        val searchField = rootView.findViewById<View>(R.id.searchField) as? EditText
-        searchField?.addTextChangedListener(
-            object : TextWatcher {
-                override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
-                override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-                private var timer: Timer = Timer()
-                private val DELAY: Long = 500
-                override fun afterTextChanged(s: Editable) {
-                    timer.cancel()
-                    timer = Timer()
-                    timer.schedule(object : TimerTask() {
-                        override fun run() {
-                            activity?.runOnUiThread {
-                                Toast.makeText(activity?.applicationContext, searchField.text, Toast.LENGTH_SHORT)
-                                    .show()
-                            }
-                        }
-                    }, DELAY)
-                }
-            }
-        )
+        initSearchBar(rootView)
         rvMovies?.layoutManager = LinearLayoutManager(this.context)
         rvMovies?.adapter = moviesAdapter
         return rootView
+    }
+
+    private fun initSearchBar(view: View) {
+        var timer = Timer()
+        val DELAY: Long = 500
+        val searchField = view.findViewById<View>(R.id.searchField) as? EditText
+        delayedToast(DELAY, timer, searchField!!.text)
+        searchField?.addTextChangedListener(
+            object : TextWatcher {
+                override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+                override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+                    delayedToast(DELAY, timer, searchField.text)
+                }
+
+                override fun afterTextChanged(s: Editable) {
+                    delayedToast(DELAY, timer, searchField.text)
+                }
+            }
+        )
+    }
+
+    private fun delayedToast(delay: Long, debounceTimer: Timer, textToWrite: Editable) {
+        var nestedTimer: Timer = debounceTimer
+        nestedTimer.cancel()
+        nestedTimer = Timer()
+        nestedTimer.schedule(object : TimerTask() {
+            override fun run() {
+                activity?.runOnUiThread {
+                    Toast.makeText(activity?.applicationContext, textToWrite, Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
+        }, delay)
     }
 
     override fun onItemClick(item: Movie, position: Int) {
