@@ -8,4 +8,7 @@
     <dimen name="small_text_size">15dp</dimen>
     <!-- Padding -->
     <dimen name="small_padding">10dp</dimen>
+    <!-- Borders -->
+    <dimen name="narrow_border">2dp</dimen>
+    <dimen name="solid_border_radius">5dp</dimen>
 </resources>
