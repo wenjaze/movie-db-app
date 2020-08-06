@@ -52,13 +52,13 @@ class SearchFragment : Fragment(), onMovieItemClickListener {
     private fun initSearchBar(view: View) {
         val searchField = view.findViewById<View>(R.id.searchField) as? EditText
         var timer = Timer()
-        timerSchedule(timer, searchField!!.text, 500L)
+        timerSchedule(timer, searchField!!.text)
 
         searchField.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 timer.cancel()
                 timer = Timer()
-                timerSchedule(timer, searchField!!.text, 500L)
+                timerSchedule(timer, searchField.text)
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -68,7 +68,7 @@ class SearchFragment : Fragment(), onMovieItemClickListener {
 
     }
 
-    private fun timerSchedule(timer: Timer, textToWrite: Editable, delay: Long) {
+    private fun timerSchedule(timer: Timer, textToWrite: Editable) {
         timer.schedule(object : TimerTask() {
             override fun run() {
                 activity?.runOnUiThread {
@@ -76,7 +76,7 @@ class SearchFragment : Fragment(), onMovieItemClickListener {
                         .show()
                 }
             }
-        }, delay)
+        }, 500L)
     }
 
     override fun onItemClick(item: Movie, position: Int) {
