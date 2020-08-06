@@ -1,6 +1,5 @@
 package com.example.fragments
 
-import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -39,15 +38,19 @@ class SearchFragment : Fragment(), onMovieItemClickListener {
         savedInstanceState: Bundle?
     ): View? {
         val rootView = inflater.inflate(R.layout.fragment_search, container, false)
-        val rvMovies = rootView.findViewById<View>(R.id.moviesRecyclerView) as? RecyclerView
+        initRecyclerView(rootView)
         initSearchBar(rootView)
-        rvMovies?.layoutManager = LinearLayoutManager(this.context)
-        rvMovies?.adapter = moviesAdapter
         return rootView
     }
 
+    private fun initRecyclerView(view: View){
+        val rvMovies = view.findViewById<View>(R.id.moviesRecyclerView) as? RecyclerView
+        rvMovies?.layoutManager = LinearLayoutManager(this.context)
+        rvMovies?.adapter = moviesAdapter
+    }
+
     private fun initSearchBar(view: View) {
-        var timer = Timer()
+        val timer = Timer()
         val DELAY: Long = 500
         val searchField = view.findViewById<View>(R.id.searchField) as? EditText
         delayedToast(DELAY, timer, searchField!!.text)
@@ -57,7 +60,6 @@ class SearchFragment : Fragment(), onMovieItemClickListener {
                 override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
                     delayedToast(DELAY, timer, searchField.text)
                 }
-
                 override fun afterTextChanged(s: Editable) {
                     delayedToast(DELAY, timer, searchField.text)
                 }
