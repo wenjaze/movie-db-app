@@ -54,7 +54,7 @@ class SearchFragment : Fragment(), onMovieItemClickListener {
         val DELAY: Long = 500
         val searchField = view.findViewById<View>(R.id.searchField) as? EditText
         delayedToast(DELAY, timer, searchField!!.text)
-        searchField?.addTextChangedListener(
+        searchField.addTextChangedListener(
             object : TextWatcher {
                 override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
                 override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
