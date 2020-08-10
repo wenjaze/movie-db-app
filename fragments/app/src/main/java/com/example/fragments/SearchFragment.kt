@@ -54,11 +54,13 @@ class SearchFragment : Fragment(), onMovieItemClickListener {
         var timer = Timer()
         timerSchedule(timer, searchField!!.text)
 
-        searchField.addTextChangedListener(object : TextWatcher {
+        searchField?.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 timer.cancel()
                 timer = Timer()
-                timerSchedule(timer, searchField.text)
+                if (searchField.text.isNotBlank()) {
+                    timerSchedule(timer, searchField!!.text)
+                }
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -72,7 +74,8 @@ class SearchFragment : Fragment(), onMovieItemClickListener {
         timer.schedule(object : TimerTask() {
             override fun run() {
                 activity?.runOnUiThread {
-                    Toast.makeText(activity?.applicationContext, textToWrite, Toast.LENGTH_LONG)
+
+                Toast.makeText(activity?.applicationContext, textToWrite, Toast.LENGTH_LONG)
                         .show()
                 }
             }
@@ -93,7 +96,5 @@ class SearchFragment : Fragment(), onMovieItemClickListener {
             addToBackStack(null)
             commit()
         }
-
     }
-
 }

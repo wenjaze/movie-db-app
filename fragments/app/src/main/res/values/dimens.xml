@@ -11,4 +11,7 @@
     <!-- Borders -->
     <dimen name="narrow_border">2dp</dimen>
     <dimen name="solid_border_radius">5dp</dimen>
+    <!-- Search Icon -->
+    <dimen name="search_icon_dims">24dp</dimen>
+    <dimen name="search_icon_viewport_dims"></dimen>
 </resources>
