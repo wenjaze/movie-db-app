@@ -26,7 +26,7 @@ class MoviesAdapter(private val movies: List<Movie>, var clickListener: onMovieI
     }
 
     override fun onBindViewHolder(viewholder: MoviesAdapter.ViewHolder, position: Int) {
-        viewholder.init(movies.get(position), clickListener)
+        viewholder.init(movies[position], clickListener)
     }
 
     override fun getItemCount(): Int {
@@ -35,5 +35,6 @@ class MoviesAdapter(private val movies: List<Movie>, var clickListener: onMovieI
 }
 
 interface onMovieItemClickListener {
+
     fun onItemClick(item: Movie, position: Int)
 }

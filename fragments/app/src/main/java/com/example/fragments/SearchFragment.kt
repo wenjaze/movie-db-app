@@ -15,31 +15,31 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fragments.movie.Movie
 import com.example.fragments.movie.MovieInflater
+import com.example.fragments.movie.MovieJson
 import com.example.fragments.movie.MovieResults
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
+import com.squareup.moshi.Types
 import layout.MoviesAdapter
 import layout.onMovieItemClickListener
+import java.lang.reflect.Type
+import java.util.Date
 import java.util.Timer
 import java.util.TimerTask
 
-class SearchFragment : Fragment(), onMovieItemClickListener {
+class SearchFragment() : Fragment(), onMovieItemClickListener {
 
     lateinit var moviesList: ArrayList<Movie>
     lateinit var moviesAdapter: MoviesAdapter
 
     companion object {
-        fun newInstance() = SearchFragment()
+        fun newInstance(): SearchFragment {
+            return SearchFragment()
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        var json = this.context?.let { MovieInflater.getJsonDataFromAsset(it, "movies.json") }
-        var moshi: Moshi = Moshi.Builder().build()
-        var jsonAdapter: JsonAdapter<MovieResults> = moshi.adapter(MovieResults::class.java)
-        var blackjackHand: MovieResults? = jsonAdapter.fromJson(json)
-        Log.d("json?:", blackjackHand!!.totalResults as String)
-        moviesList = MovieInflater.createTrialList()
-        moviesAdapter = MoviesAdapter(moviesList, this)
+        parseJsonToView()
         super.onCreate(savedInstanceState)
     }
 
@@ -51,6 +51,16 @@ class SearchFragment : Fragment(), onMovieItemClickListener {
         initRecyclerView(rootView)
         initSearchBar(rootView)
         return rootView
+    }
+
+    private fun parseJsonToView() {
+        val json = this.context?.let { MovieInflater.getJsonDataFromAsset(it, "movies.json") }.toString()
+        val moshi = Moshi.Builder().build()
+        val jsonAdapter: JsonAdapter<MovieResults> = moshi.adapter(MovieResults::class.java)
+        val moviesData = jsonAdapter.fromJson(json)
+        val moviesHehe: List<MovieJson> = moviesData!!.results
+        moviesList = MovieInflater.createTrialList(moviesHehe)
+        moviesAdapter = MoviesAdapter(moviesList, this)
     }
 
     private fun initRecyclerView(view: View) {
@@ -85,7 +95,7 @@ class SearchFragment : Fragment(), onMovieItemClickListener {
             override fun run() {
                 activity?.runOnUiThread {
 
-                Toast.makeText(activity?.applicationContext, textToWrite, Toast.LENGTH_LONG)
+                    Toast.makeText(activity?.applicationContext, textToWrite, Toast.LENGTH_LONG)
                         .show()
                 }
             }
@@ -94,6 +104,7 @@ class SearchFragment : Fragment(), onMovieItemClickListener {
 
     override fun onItemClick(item: Movie, position: Int) {
         val bundle = Bundle()
+        // TODO : send more stuf
         bundle.putString("movieTitle", item.title)
         val secondFragment = SecondFragment()
         secondFragment.arguments = bundle
