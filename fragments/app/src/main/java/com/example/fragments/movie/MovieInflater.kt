@@ -15,7 +15,6 @@ class MovieInflater {
         }
 
         fun createTrialList(jsonList: List<MovieJson>): ArrayList<Movie> {
-            val adapter: MovieJsonToCamelCaseAdapter
             var newList: ArrayList<Movie> = arrayListOf<Movie>()
             for (i in jsonList) {
                 newList.add(movieFromJson(i))
