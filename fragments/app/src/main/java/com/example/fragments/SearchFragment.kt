@@ -1,8 +1,10 @@
 package com.example.fragments
 
+import android.app.Application
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +15,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fragments.movie.Movie
 import com.example.fragments.movie.MovieInflater
+import com.example.fragments.movie.MovieResults
+import com.squareup.moshi.JsonAdapter
+import com.squareup.moshi.Moshi
 import layout.MoviesAdapter
 import layout.onMovieItemClickListener
 import java.util.Timer
@@ -28,6 +33,11 @@ class SearchFragment : Fragment(), onMovieItemClickListener {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        var json = this.context?.let { MovieInflater.getJsonDataFromAsset(it, "movies.json") }
+        var moshi: Moshi = Moshi.Builder().build()
+        var jsonAdapter: JsonAdapter<MovieResults> = moshi.adapter(MovieResults::class.java)
+        var blackjackHand: MovieResults? = jsonAdapter.fromJson(json)
+        Log.d("json?:", blackjackHand!!.totalResults as String)
         moviesList = MovieInflater.createTrialList()
         moviesAdapter = MoviesAdapter(moviesList, this)
         super.onCreate(savedInstanceState)
@@ -54,12 +64,12 @@ class SearchFragment : Fragment(), onMovieItemClickListener {
         var timer = Timer()
         timerSchedule(timer, searchField!!.text)
 
-        searchField?.addTextChangedListener(object : TextWatcher {
+        searchField.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 timer.cancel()
                 timer = Timer()
                 if (searchField.text.isNotBlank()) {
-                    timerSchedule(timer, searchField!!.text)
+                    timerSchedule(timer, searchField.text)
                 }
             }
 
