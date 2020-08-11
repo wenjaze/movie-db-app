@@ -104,8 +104,13 @@ class SearchFragment() : Fragment(), onMovieItemClickListener {
 
     override fun onItemClick(item: Movie, position: Int) {
         val bundle = Bundle()
-        // TODO : send more stuf
-        bundle.putString("movieTitle", item.title)
+        val toSend = arrayListOf<String>(
+            item.title,
+            item.id.toString(),
+            item.releaseDate.toString(),
+            item.voteAverage.toString()
+        )
+        bundle.putStringArrayList("datas", toSend)
         val secondFragment = SecondFragment()
         secondFragment.arguments = bundle
         switchToSecondFragment(secondFragment)
