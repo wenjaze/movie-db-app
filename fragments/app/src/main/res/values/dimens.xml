@@ -5,7 +5,8 @@
     <dimen name="text_margin">16dp</dimen>
     <!-- Text -->
     <dimen name="medium_text_size">30sp</dimen>
-    <dimen name="small_text_size">15dp</dimen>
+    <dimen name="small_text_size">20dp</dimen>
+    <dimen name="large_text_size">40dp</dimen>
     <!-- Padding -->
     <dimen name="small_padding">10dp</dimen>
     <!-- Borders -->
