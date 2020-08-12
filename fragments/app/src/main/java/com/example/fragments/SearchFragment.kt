@@ -1,10 +1,8 @@
 package com.example.fragments
 
-import android.app.Application
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,16 +12,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fragments.movie.Movie
-import com.example.fragments.movie.MovieInflater
-import com.example.fragments.movie.MovieJson
-import com.example.fragments.movie.MovieResults
-import com.squareup.moshi.JsonAdapter
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.Types
+import com.example.fragments.movie.JsonParser
 import layout.MoviesAdapter
 import layout.onMovieItemClickListener
-import java.lang.reflect.Type
-import java.util.Date
 import java.util.Timer
 import java.util.TimerTask
 
@@ -39,7 +30,9 @@ class SearchFragment() : Fragment(), onMovieItemClickListener {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        parseJsonToView()
+        val jp = this.context?.let { JsonParser(it) }
+        moviesList = activity?.let { jp!!.runOnBackgroundThread(it) } as ArrayList<Movie>
+        moviesAdapter = MoviesAdapter(moviesList, this)
         super.onCreate(savedInstanceState)
     }
 
@@ -51,16 +44,6 @@ class SearchFragment() : Fragment(), onMovieItemClickListener {
         initRecyclerView(rootView)
         initSearchBar(rootView)
         return rootView
-    }
-
-    private fun parseJsonToView() {
-        val json = this.context?.let { MovieInflater.getJsonDataFromAsset(it, "movies.json") }.toString()
-        val moshi = Moshi.Builder().build()
-        val jsonAdapter: JsonAdapter<MovieResults> = moshi.adapter(MovieResults::class.java)
-        val moviesData = jsonAdapter.fromJson(json)
-        val moviesHehe: List<MovieJson> = moviesData!!.results
-        moviesList = MovieInflater.createTrialList(moviesHehe)
-        moviesAdapter = MoviesAdapter(moviesList, this)
     }
 
     private fun initRecyclerView(view: View) {

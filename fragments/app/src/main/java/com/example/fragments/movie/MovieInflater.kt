@@ -1,11 +1,8 @@
 package com.example.fragments.movie
 
 import android.content.Context
-import android.os.Debug
 import android.util.Log
-import com.squareup.moshi.Moshi
 import java.io.IOException
-import java.io.InputStream
 
 class MovieInflater {
     companion object {
