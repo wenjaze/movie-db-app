@@ -31,5 +31,4 @@ class MovieInflater {
             return jsonString
         }
     }
-
 }

@@ -55,9 +55,8 @@ class SearchFragment() : Fragment(), onMovieItemClickListener {
     private fun initSearchBar(view: View) {
         val searchField = view.findViewById<View>(R.id.searchField) as? EditText
         var timer = Timer()
-        timerSchedule(timer, searchField!!.text)
 
-        searchField.addTextChangedListener(object : TextWatcher {
+        searchField?.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 timer.cancel()
                 timer = Timer()

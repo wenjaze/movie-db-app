@@ -1,6 +1,5 @@
 package com.example.fragments
 
-import android.app.PendingIntent.getActivity
 import android.os.Bundle
 import android.view.WindowManager
 import android.widget.FrameLayout
