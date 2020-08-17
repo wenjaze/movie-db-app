@@ -14,11 +14,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.fragments.movie.Movie
 import com.example.fragments.movie.JsonParser
 import layout.MoviesAdapter
-import layout.onMovieItemClickListener
 import java.util.Timer
 import java.util.TimerTask
 
-class SearchFragment() : Fragment(), onMovieItemClickListener {
+class SearchFragment() : Fragment(), MoviesAdapter.onMovieItemClickListener {
 
     lateinit var moviesList: ArrayList<Movie>
     lateinit var moviesAdapter: MoviesAdapter
@@ -86,13 +85,7 @@ class SearchFragment() : Fragment(), onMovieItemClickListener {
 
     override fun onItemClick(item: Movie, position: Int) {
         val bundle = Bundle()
-        val toSend = arrayListOf<String>(
-            item.title,
-            item.id.toString(),
-            item.releaseDate.toString(),
-            item.voteAverage.toString()
-        )
-        bundle.putStringArrayList("datas", toSend)
+        bundle.putParcelable("keyData", item)
         val secondFragment = SecondFragment()
         secondFragment.arguments = bundle
         switchToSecondFragment(secondFragment)
