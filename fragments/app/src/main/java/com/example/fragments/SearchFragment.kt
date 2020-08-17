@@ -29,7 +29,7 @@ class SearchFragment() : Fragment(), MoviesAdapter.onMovieItemClickListener {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        val jp = this.context?.let { JsonParser(it) }
+        val jp = JsonParser(this.requireContext())
         moviesList = activity?.let { jp!!.runOnBackgroundThread(it) } as ArrayList<Movie>
         moviesAdapter = MoviesAdapter(moviesList, this)
         super.onCreate(savedInstanceState)
@@ -47,7 +47,7 @@ class SearchFragment() : Fragment(), MoviesAdapter.onMovieItemClickListener {
 
     private fun initRecyclerView(view: View) {
         val rvMovies = view.findViewById<View>(R.id.moviesRecyclerView) as? RecyclerView
-        rvMovies?.layoutManager = LinearLayoutManager(this.context)
+        rvMovies?.layoutManager = LinearLayoutManager(this.requireContext())
         rvMovies?.adapter = moviesAdapter
     }
 
