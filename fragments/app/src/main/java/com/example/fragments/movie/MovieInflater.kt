@@ -1,7 +1,6 @@
 package com.example.fragments.movie
 
 import android.content.Context
-import android.util.Log
 import java.io.IOException
 
 object MovieInflater {
