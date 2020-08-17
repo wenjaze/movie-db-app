@@ -29,9 +29,7 @@ class MoviesAdapter(private val movies: List<Movie>, var clickListener: onMovieI
         viewholder.init(movies[position], clickListener)
     }
 
-    override fun getItemCount(): Int {
-        return movies.size
-    }
+    override fun getItemCount(): Int = movies.size
 }
 
 interface onMovieItemClickListener {
