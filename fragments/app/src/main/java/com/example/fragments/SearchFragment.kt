@@ -30,7 +30,7 @@ class SearchFragment() : Fragment(), MoviesAdapter.onMovieItemClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val jp = JsonParser(this.requireContext())
-        moviesList = activity?.let { jp!!.runOnBackgroundThread(it) } as ArrayList<Movie>
+        moviesList = requireActivity().let { jp.runOnBackgroundThread(it) } as ArrayList<Movie>
         moviesAdapter = MoviesAdapter(moviesList, this)
         super.onCreate(savedInstanceState)
     }
@@ -74,9 +74,9 @@ class SearchFragment() : Fragment(), MoviesAdapter.onMovieItemClickListener {
     private fun timerSchedule(timer: Timer, textToWrite: Editable) {
         timer.schedule(object : TimerTask() {
             override fun run() {
-                activity?.runOnUiThread {
+                requireActivity().runOnUiThread {
 
-                    Toast.makeText(activity?.applicationContext, textToWrite, Toast.LENGTH_LONG)
+                    Toast.makeText(requireActivity().applicationContext, textToWrite, Toast.LENGTH_LONG)
                         .show()
                 }
             }
@@ -92,7 +92,7 @@ class SearchFragment() : Fragment(), MoviesAdapter.onMovieItemClickListener {
     }
 
     private fun switchToSecondFragment(fragment: Fragment) {
-        activity?.supportFragmentManager?.beginTransaction()?.run {
+        requireActivity().supportFragmentManager.beginTransaction().run {
             replace(R.id.frameLayout, fragment)
             addToBackStack(null)
             commit()
