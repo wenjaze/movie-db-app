@@ -14,7 +14,6 @@ object MovieInflater {
         var newList: ArrayList<Movie> = arrayListOf<Movie>()
         for (i in jsonList) {
             newList.add(movieFromJson(i))
-            Log.d("MovieInflater", i.id.toString())
             }
             return newList
         }
