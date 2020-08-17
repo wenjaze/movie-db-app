@@ -4,18 +4,17 @@ import android.content.Context
 import android.util.Log
 import java.io.IOException
 
-class MovieInflater {
-    companion object {
-        fun movieFromJson(movieJson: MovieJson): Movie {
-            val movie = Movie(movieJson.id, movieJson.vote_average, movieJson.title, movieJson.release_date)
-            return movie
-        }
+object MovieInflater {
+    fun movieFromJson(movieJson: MovieJson): Movie {
+        val movie = Movie(movieJson.id, movieJson.vote_average, movieJson.title, movieJson.release_date)
+        return movie
+    }
 
-        fun createTrialList(jsonList: List<MovieJson>): ArrayList<Movie> {
-            var newList: ArrayList<Movie> = arrayListOf<Movie>()
-            for (i in jsonList) {
-                newList.add(movieFromJson(i))
-                Log.d("MovieInflater", i.id.toString())
+    fun createTrialList(jsonList: List<MovieJson>): ArrayList<Movie> {
+        var newList: ArrayList<Movie> = arrayListOf<Movie>()
+        for (i in jsonList) {
+            newList.add(movieFromJson(i))
+            Log.d("MovieInflater", i.id.toString())
             }
             return newList
         }
@@ -30,5 +29,4 @@ class MovieInflater {
             }
             return jsonString
         }
-    }
 }
