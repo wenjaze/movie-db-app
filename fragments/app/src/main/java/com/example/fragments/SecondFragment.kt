@@ -5,7 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.fragment_second.view.*
+import kotlinx.android.synthetic.main.fragment_second.view.movie_title
+import kotlinx.android.synthetic.main.fragment_second.view.movie_id
+import kotlinx.android.synthetic.main.fragment_second.view.movie_release_date
+import kotlinx.android.synthetic.main.fragment_second.view.movie_vote_average
 
 class SecondFragment : Fragment() {
 
