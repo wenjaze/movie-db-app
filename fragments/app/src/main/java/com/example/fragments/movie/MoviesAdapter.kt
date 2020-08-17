@@ -10,15 +10,6 @@ import com.example.fragments.R
 
 class MoviesAdapter(private val movies: List<Movie>, var clickListener: onMovieItemClickListener) :
     RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val movieTitleView = itemView.findViewById<TextView>(R.id.movieItem)
-        fun init(item: Movie, action: onMovieItemClickListener) {
-            movieTitleView.text = item.title
-            itemView.setOnClickListener() {
-                action.onItemClick(item, adapterPosition)
-            }
-        }
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesAdapter.ViewHolder {
         val movieItemView = LayoutInflater.from(parent.context).inflate(R.layout.item_movie, parent, false)
@@ -30,9 +21,19 @@ class MoviesAdapter(private val movies: List<Movie>, var clickListener: onMovieI
     }
 
     override fun getItemCount(): Int = movies.size
-}
 
-interface onMovieItemClickListener {
+    interface onMovieItemClickListener {
 
-    fun onItemClick(item: Movie, position: Int)
+        fun onItemClick(item: Movie, position: Int)
+    }
+
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val movieTitleView = itemView.findViewById<TextView>(R.id.movieItem)
+        fun init(item: Movie, action: onMovieItemClickListener) {
+            movieTitleView.text = item.title
+            itemView.setOnClickListener() {
+                action.onItemClick(item, adapterPosition)
+            }
+        }
+    }
 }
