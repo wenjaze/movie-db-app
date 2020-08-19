@@ -3,6 +3,7 @@ package com.example.fragments
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,13 +14,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fragments.movie.Movie
 import com.example.fragments.movie.JsonParser
+import com.example.fragments.movie.MovieInflater
+import com.example.fragments.movie.MovieJson
+import com.example.fragments.movie.MovieResults
 import layout.MoviesAdapter
 import java.util.Timer
 import java.util.TimerTask
 
 class SearchFragment() : Fragment(), MoviesAdapter.onMovieItemClickListener {
 
-    lateinit var moviesList: ArrayList<Movie>
     lateinit var moviesAdapter: MoviesAdapter
 
     companion object {
@@ -29,9 +32,11 @@ class SearchFragment() : Fragment(), MoviesAdapter.onMovieItemClickListener {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        val jp = JsonParser(this.requireContext())
-        moviesList = requireActivity().let { jp.runOnBackgroundThread(it) } as ArrayList<Movie>
-        moviesAdapter = MoviesAdapter(moviesList, this)
+        val json: String = MovieInflater.getJsonDataFromAsset(this.requireContext(), "movies.json").toString()
+        val jp = JsonParser(json)
+        jp.createObject()
+        val movieResults = MovieResults(jp.getTotalResults(), jp.getResultList())
+        moviesAdapter = MoviesAdapter(MovieInflater.createMovieList(movieResults.results), this)
         super.onCreate(savedInstanceState)
     }
 

@@ -1,44 +1,46 @@
 package com.example.fragments.movie
 
-import android.app.Activity
-import android.content.Context
 import android.util.Log
+import com.squareup.moshi.Json
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.NonCancellable.join
+import kotlinx.coroutines.NonCancellable.start
+import kotlinx.coroutines.launch
+import java.lang.Exception
+import java.lang.String.join
+import kotlin.concurrent.thread
+import kotlin.properties.Delegates
 
-class JsonParser(context: Context) : Runnable {
+class JsonParser(val json: String) : Runnable {
 
-    private val contextY = context
-    private var nestedList: ArrayList<Movie> = arrayListOf<Movie>()
+    private var movieResultsTotal: Int = 0
+    private var movieResultsList: List<MovieJson> = listOf()
 
-    private fun jsonParse(context: Context): ArrayList<Movie> {
-        val json = MovieInflater.getJsonDataFromAsset(context, "movies.json").toString()
+    fun buildObject() {
         val moshi = Moshi.Builder().build()
         val jsonAdapter: JsonAdapter<MovieResults> = moshi.adapter(MovieResults::class.java)
-        val moviesData = jsonAdapter.fromJson(json)
-        val moviesHehe: List<MovieJson> = moviesData!!.results
-        return createTrialListSecond(moviesHehe, nestedList)
+        val movieResults = jsonAdapter.fromJson(json)!!
+        movieResultsTotal = movieResults.total_results
+        movieResultsList = movieResults.results
     }
 
-    private fun createTrialListSecond(jsonList: List<MovieJson>, newList: ArrayList<Movie>): ArrayList<Movie> {
-        for (i in jsonList) {
-            newList.add(MovieInflater.movieFromJson(i))
-        }
-        return newList
+    override fun run() {
+        buildObject()
     }
 
-    fun runOnBackgroundThread(activity: Activity): ArrayList<Movie> {
+    fun createObject() {
         Thread(Runnable {
             try {
                 run()
             } catch (e: Exception) {
-                Log.d("Error", "Couldn't run task on : " + Thread.currentThread().name)
+                Log.d("Error", "couldn't run task.")
             }
-        }).start()
-        return nestedList
+        }).run()
     }
 
-    override fun run() {
-        jsonParse(contextY)
-    }
+    fun getTotalResults() = movieResultsTotal
+    fun getResultList() = movieResultsList
+
 }

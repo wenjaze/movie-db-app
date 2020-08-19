@@ -1,6 +1,7 @@
 package com.example.fragments.movie
 
 import android.content.Context
+import android.util.Log
 import java.io.IOException
 
 object MovieInflater {
@@ -9,17 +10,18 @@ object MovieInflater {
         return movie
     }
 
-    fun createTrialList(jsonList: List<MovieJson>): ArrayList<Movie> {
-        var newList: ArrayList<Movie> = arrayListOf<Movie>()
+    fun createMovieList(jsonList: List<MovieJson>): List<Movie> {
+        var newList: ArrayList<Movie> = arrayListOf()
         for (i in jsonList) {
+            Log.d("wtf????????????", i.title)
             newList.add(movieFromJson(i))
-            }
-            return newList
         }
+        return newList
+    }
 
-        fun getJsonDataFromAsset(context: Context, fileName: String): String? {
-            val jsonString: String
-            try {
+    fun getJsonDataFromAsset(context: Context, fileName: String): String? {
+        val jsonString: String
+        try {
                 jsonString = context.assets.open(fileName).bufferedReader().use { it.readText() }
             } catch (ioException: IOException) {
                 ioException.printStackTrace()
