@@ -1,17 +1,9 @@
 package com.example.fragments.movie
 
 import android.util.Log
-import com.squareup.moshi.Json
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.NonCancellable.join
-import kotlinx.coroutines.NonCancellable.start
-import kotlinx.coroutines.launch
 import java.lang.Exception
-import java.lang.String.join
-import kotlin.concurrent.thread
-import kotlin.properties.Delegates
 
 class JsonParser(val json: String) : Runnable {
 
