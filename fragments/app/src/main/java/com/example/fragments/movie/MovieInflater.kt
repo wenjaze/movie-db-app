@@ -13,7 +13,6 @@ object MovieInflater {
     fun createMovieList(jsonList: List<MovieJson>): List<Movie> {
         var newList: ArrayList<Movie> = arrayListOf()
         for (i in jsonList) {
-            Log.d("wtf????????????", i.title)
             newList.add(movieFromJson(i))
         }
         return newList
