@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/white_bg_item"
         android:gravity="center"
-        android:textAppearance="@style/MenuText"
         android:padding="@dimen/padding_small"
+        android:textAppearance="@style/MenuText"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
