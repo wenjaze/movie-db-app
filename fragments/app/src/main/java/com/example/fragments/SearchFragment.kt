@@ -25,9 +25,9 @@ class SearchFragment() : Fragment(), MoviesAdapter.onMovieItemClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val json: String = MovieInflater.getJsonDataFromAsset(this.requireContext(), "movies.json").toString()
-        val jp = JsonParser(json)
-        jp.createObject()
-        val movieResults = MovieResults(jp.getTotalResults(), jp.getResultList())
+        val jsonParser = JsonParser(json)
+        jsonParser.createObject()
+        val movieResults = MovieResults(jsonParser.getTotalResults(), jsonParser.getResultList())
         moviesAdapter = MoviesAdapter(MovieInflater.createMovieList(movieResults.results), this)
         super.onCreate(savedInstanceState)
     }
