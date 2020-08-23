@@ -7,10 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.fragments.movie.Movie
-import kotlinx.android.synthetic.main.fragment_second.view.movie_id
-import kotlinx.android.synthetic.main.fragment_second.view.movie_release_date
-import kotlinx.android.synthetic.main.fragment_second.view.movie_title
-import kotlinx.android.synthetic.main.fragment_second.view.movie_vote_average
+import kotlinx.android.synthetic.main.fragment_second.movie_id
+import kotlinx.android.synthetic.main.fragment_second.movie_release_date
+import kotlinx.android.synthetic.main.fragment_second.movie_title
+import kotlinx.android.synthetic.main.fragment_second.movie_vote_average
 
 class SecondFragment : Fragment() {
 
@@ -19,19 +19,16 @@ class SecondFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val rootView = inflater.inflate(R.layout.fragment_second, container, false)
-        arguments?.let {
+    ): View? = inflater.inflate(R.layout.fragment_second, container, false)
 
-            movie = requireArguments().getParcelable("keyData")!!
-            Log.d("SECOND_FRAGMENT", movie.id.toString())
-            rootView.movie_id.text = movie?.id.toString()
-            rootView.movie_release_date.text = movie!!.releaseDate.toString()
-            rootView.movie_title.text = movie!!.title
-            rootView.movie_vote_average.text = movie.voteAverage.toString()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        arguments?.getParcelable<Movie>("keyData")?.run {
+            movie_id.text = id.toString()
+            movie_release_date.text = releaseDate.toString()
+            movie_title.text = title
+            movie_vote_average.text = voteAverage.toString()
         }
-
-        return rootView
+        super.onViewCreated(view, savedInstanceState)
     }
 
 }
