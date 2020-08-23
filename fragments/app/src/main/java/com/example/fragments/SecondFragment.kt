@@ -16,10 +16,6 @@ class SecondFragment : Fragment() {
 
     private lateinit var movie: Movie
 
-    companion object {
-        fun newInstance() = SecondFragment()
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

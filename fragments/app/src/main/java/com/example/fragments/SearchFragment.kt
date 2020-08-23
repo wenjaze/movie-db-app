@@ -23,12 +23,6 @@ class SearchFragment() : Fragment(), MoviesAdapter.onMovieItemClickListener {
 
     lateinit var moviesAdapter: MoviesAdapter
 
-    companion object {
-        fun newInstance(): SearchFragment {
-            return SearchFragment()
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         val json: String = MovieInflater.getJsonDataFromAsset(this.requireContext(), "movies.json").toString()
         val jp = JsonParser(json)
