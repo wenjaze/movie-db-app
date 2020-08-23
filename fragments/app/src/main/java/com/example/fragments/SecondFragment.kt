@@ -1,7 +1,6 @@
 package com.example.fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,8 +12,6 @@ import kotlinx.android.synthetic.main.fragment_second.movie_title
 import kotlinx.android.synthetic.main.fragment_second.movie_vote_average
 
 class SecondFragment : Fragment() {
-
-    private lateinit var movie: Movie
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
