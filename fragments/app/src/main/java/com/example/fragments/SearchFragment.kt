@@ -38,7 +38,7 @@ class SearchFragment() : Fragment(), MoviesAdapter.onMovieItemClickListener {
 	}
 
 	private fun initRecyclerView(view: View) {
-		val rvMovies = view?.findViewById<View>(R.id.moviesRecyclerView) as? RecyclerView
+		val rvMovies = view.findViewById<View>(R.id.moviesRecyclerView) as? RecyclerView
 		moviesAdapter = MoviesAdapter(listOf(), this)
 		rvMovies?.layoutManager = LinearLayoutManager(this.requireContext())
 		rvMovies?.adapter = moviesAdapter
@@ -100,9 +100,7 @@ class SearchFragment() : Fragment(), MoviesAdapter.onMovieItemClickListener {
 		movieController.searchMovies(query, object : ServerResponseListener {
 			override fun getMovies(movies: List<Movie>) {
 				if (movies.isNotEmpty()) {
-					//adapter here
 					timerSchedule(timer) { moviesAdapter.setMovies(movies) }
-
 				} else {
 					timerSchedule(
 						timer
