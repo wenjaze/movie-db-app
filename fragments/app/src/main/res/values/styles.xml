@@ -11,19 +11,21 @@
     </style>
 
     <style name="SecondFragmentTextView">
-        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center</item>
         <item name="android:background">@drawable/coral_bg_item</item>
         <item name="android:textAppearance">@style/BaseText</item>
         <item name="android:padding">@dimen/padding_small</item>
         <item name="android:layout_marginTop">@dimen/margin_small</item>
+        <item name="android:layout_marginLeft">@dimen/margin_small</item>
+        <item name="android:layout_marginRight">@dimen/margin_small</item>
     </style>
 
     <style name="BaseText">
-        <item name="android:textColor">@color/coral</item>
-        <item name="android:textSize">@dimen/text_size_small</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/light_coral</item>
+        <item name="android:textSize">@dimen/text_size_tiny</item>
+        <item name="android:textStyle">normal</item>
     </style>
 
     <style name="MenuText">

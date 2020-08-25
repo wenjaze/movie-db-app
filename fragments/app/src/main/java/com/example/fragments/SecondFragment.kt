@@ -8,11 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.fragments.movie.Movie
+import kotlinx.android.synthetic.main.fragment_second.movie_original_language
 import kotlinx.android.synthetic.main.fragment_second.movie_overview
 import kotlinx.android.synthetic.main.fragment_second.movie_popularity
 import kotlinx.android.synthetic.main.fragment_second.movie_release_date
 import kotlinx.android.synthetic.main.fragment_second.movie_title
 import kotlinx.android.synthetic.main.fragment_second.movie_vote_average
+import kotlinx.android.synthetic.main.fragment_second.movie_vote_count
 
 class SecondFragment : Fragment() {
 
@@ -24,13 +26,14 @@ class SecondFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
         arguments?.getParcelable<Movie>("keyData")?.run {
-            movie_overview.text = "OVERVIEW:\n $overview"
-            movie_popularity.text = "POPULARITY:\n $popularity"
-            movie_release_date.text = "RELEASE DATE:\n $release_date"
-            movie_title.text = "TITLE:\n $title"
-            movie_vote_average.text = "VOTE AVERAGE:\n $vote_average"
+            movie_vote_count.text = "VOTE COUNT:\n$vote_count"
+            movie_original_language.text = "LANGUAGE:\n$original_language"
+            movie_overview.text = "OVERVIEW:\n$overview"
+            movie_popularity.text = "POPULARITY:\n$popularity"
+            movie_release_date.text = "RELEASE DATE:\n$release_date"
+            movie_title.text = "TITLE:\n$title"
+            movie_vote_average.text = "VOTE AVERAGE:\n$vote_average"
         }
         super.onViewCreated(view, savedInstanceState)
     }
