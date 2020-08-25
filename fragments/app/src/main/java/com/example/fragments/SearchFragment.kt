@@ -22,10 +22,7 @@ import java.util.TimerTask
 class SearchFragment() : Fragment(), MoviesAdapter.onMovieItemClickListener {
 
 	lateinit var moviesAdapter: MoviesAdapter
-
-	override fun onCreate(savedInstanceState: Bundle?) {
-		super.onCreate(savedInstanceState)
-	}
+	private var timer = Timer()
 
 	override fun onCreateView(
 		inflater: LayoutInflater, container: ViewGroup?,
@@ -46,13 +43,13 @@ class SearchFragment() : Fragment(), MoviesAdapter.onMovieItemClickListener {
 
 	private fun initSearchBar(view: View) {
 		val searchField = view.findViewById<View>(R.id.searchField) as? EditText
-		var timer = Timer()
 
 		searchField?.addTextChangedListener(object : TextWatcher {
 			override fun afterTextChanged(s: Editable?) {
-				timer.cancel()
-				timer = Timer()
+
 				if (searchField.text.isNotBlank()) {
+					timer.cancel()
+					timer = Timer()
 					fillMovieList(searchField.text.toString())
 				}
 			}
@@ -91,7 +88,6 @@ class SearchFragment() : Fragment(), MoviesAdapter.onMovieItemClickListener {
 	}
 
 	private fun fillMovieList(query: String) {
-		val timer = Timer()
 		val movieController = MovieController()
 		movieController.searchMovies(query, object : ServerResponseListener {
 			override fun getMovies(movies: List<Movie>) {
