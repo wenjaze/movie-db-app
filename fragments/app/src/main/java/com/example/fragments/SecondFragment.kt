@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import com.example.fragments.movie.Movie
 import kotlinx.android.synthetic.main.fragment_second.movie_overview
 import kotlinx.android.synthetic.main.fragment_second.movie_popularity

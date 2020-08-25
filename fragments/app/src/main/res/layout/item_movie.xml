@@ -10,8 +10,8 @@
         android:id="@+id/movieItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="end"
         android:background="@drawable/white_bg_item"
-        android:gravity="center"
         android:padding="@dimen/padding_small"
         android:textAppearance="@style/MenuText"
         app:layout_constraintTop_toTopOf="parent" />

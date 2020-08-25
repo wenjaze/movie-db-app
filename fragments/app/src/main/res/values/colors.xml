@@ -6,5 +6,7 @@
     <color name="coral">#F08080</color>
     <color name="white">#ffffff</color>
     <color name="search_icon_color">#FF000000</color>
-    <color name="light_grey">#3e3e3e</color>
+    <color name="grey">#3e3e3e</color>
+    <color name="light_coral">#f7abab</color>
+    <color name="dark_coral">#824f4f</color>
 </resources>
