@@ -11,79 +11,56 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="@dimen/padding_small">
+
+
         <!-- UIT BEFEJEZNI -->
-        <TextView
-            android:id="@+id/movie_overview"
+        <ScrollView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:background="@drawable/coral_bg_item"
-            android:gravity="center"
-            android:textAppearance="@style/BaseText"
-            android:padding="@dimen/padding_small"
+            android:layout_height="0dp"
+            android:scrollbars="vertical"
+            style="@style/SecondFragmentTextView"
+            android:layout_marginBottom="@dimen/padding_small"
             app:layout_constrainedHeight="true"
+            app:layout_constraintHeight_percent=".4"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintHeight_percent=".20"
-            app:layout_constraintTop_toBottomOf="@id/movie_release_date"
-            tools:showIn="@layout/fragment_second" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/movie_release_date">
+
+            <TextView
+                android:id="@+id/movie_overview"
+                android:gravity="center"
+                android:textAppearance="@style/BaseText"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" />
+        </ScrollView>
 
         <TextView
+            style="@style/SecondFragmentTextView"
             android:id="@+id/movie_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:background="@drawable/coral_bg_item"
-            android:gravity="center"
-            android:textAppearance="@style/BaseText"
-            app:layout_constrainedHeight="true"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintHeight_percent=".20"
             app:layout_constraintTop_toTopOf="parent"
-            tools:showIn="@layout/fragment_second"
-            android:padding="@dimen/padding_small" />
+            app:layout_constraintRight_toRightOf="parent" />
 
         <TextView
+            style="@style/SecondFragmentTextView"
             android:id="@+id/movie_vote_average"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:background="@drawable/coral_bg_item"
-            android:gravity="center"
-            android:textAppearance="@style/BaseText"
-            android:padding="@dimen/padding_small"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constrainedHeight="true"
-            app:layout_constraintHeight_percent=".20"
-            app:layout_constraintTop_toBottomOf="@id/movie_title"
-            tools:showIn="@layout/fragment_second" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/movie_title" />
 
         <TextView
             android:id="@+id/movie_popularity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:background="@drawable/coral_bg_item"
-            android:gravity="center"
-            android:textAppearance="@style/BaseText"
-            android:padding="@dimen/padding_small"
+            style="@style/SecondFragmentTextView"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constrainedHeight="true"
-            app:layout_constraintHeight_percent=".20"
-            app:layout_constraintTop_toBottomOf="@id/movie_vote_average"
-            tools:showIn="@layout/fragment_second" />
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/movie_vote_average" />
 
         <TextView
             android:id="@+id/movie_release_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:background="@drawable/coral_bg_item"
-            android:gravity="center"
-            android:textAppearance="@style/BaseText"
-            android:padding="@dimen/padding_small"
+            style="@style/SecondFragmentTextView"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constrainedHeight="true"
-            app:layout_constraintHeight_percent=".20"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/movie_popularity" />
 
 
