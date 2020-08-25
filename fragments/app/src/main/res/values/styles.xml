@@ -17,9 +17,7 @@
         <item name="android:background">@drawable/coral_bg_item</item>
         <item name="android:textAppearance">@style/BaseText</item>
         <item name="android:padding">@dimen/padding_small</item>
-        <item name="android:layout_marginTop">@dimen/margin_small</item>
-        <item name="android:layout_marginLeft">@dimen/margin_small</item>
-        <item name="android:layout_marginRight">@dimen/margin_small</item>
+        <item name="android:layout_margin">@dimen/margin_small</item>
     </style>
 
     <style name="BaseText">
