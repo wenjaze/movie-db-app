@@ -1,11 +1,11 @@
 # TheMovieDB App
 __*This is a documentation of what i've learnt during this trial project*__
 
-##Excercises:
+## Excercises:
 * [x] __Swap 2 Activities on button click:__
  * [_Basics of Android Studio_](https://developer.android.com/training/basics/firstapp)
  * [_Naming Conventions_](https://github.com/ribot/android-guidelines/blob/master/project_and_code_guidelines.md)
- * _Commit messages[(bonus)]_(https://gitmoji.carloscuesta.me/)
+ * _Commit messages_ _[(bonus)]_(https://gitmoji.carloscuesta.me/)
  * [_Factory Pattern_](https://www.tutorialspoint.com/design_pattern/factory_pattern.htm)
  * [_Prevent Wildcard imports_](https://stackoverflow.com/a/32907163/6694770)
  * [_Kotlin_](https://developer.android.com/courses/topics/android-basics-kotlin)
@@ -16,7 +16,7 @@ __*This is a documentation of what i've learnt during this trial project*__
 * [x] __Swap 2 Fragments on button click:__
  *  [_return vs expression body_](https://discuss.kotlinlang.org/t/return-vs-expression-body/12485) 
  * [_Null safety_](https://kotlinlang.org/docs/reference/null-safety.html)
- * [_Import Scheme  (settings / code style / kotlin / import scheme / android studio)]_
+ * [_Import Scheme  (settings / code style / kotlin / import scheme / android studio)](scheme.xml)
  * [**_Fragments Lifecycle:bangbang:_**](https://developer.android.com/guide/components/fragments#Lifecycle)
  * [_onClickListener_](https://developer.android.com/reference/kotlin/android/view/View.OnClickListener)
 * [x] __Create a RecyclerView, on listelement click, navigate to SecondFragment__
@@ -36,4 +36,5 @@ __*This is a documentation of what i've learnt during this trial project*__
  * [_A couple of cases :zany_face:_](https://medium.com/better-programming/string-case-styles-camel-pascal-snake-and-kebab-case-981407998841)
  * [_Threading_](https://blog.mindorks.com/android-core-looper-handler-and-handlerthread-bd54d69fe91a)
   * [_Message Queue_](https://medium.com/better-programming/a-detailed-story-about-handler-thread-looper-message-queue-ac2cd9be0d78)
+  * 
  
