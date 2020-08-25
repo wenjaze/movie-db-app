@@ -90,10 +90,6 @@ class SearchFragment() : Fragment(), MoviesAdapter.onMovieItemClickListener {
 		}
 	}
 
-	fun logit() {
-		Log.d("run?", "yes")
-	}
-
 	private fun fillMovieList(query: String) {
 		val timer = Timer()
 		val movieController = MovieController()
