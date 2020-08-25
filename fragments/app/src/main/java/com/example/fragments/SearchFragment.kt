@@ -3,7 +3,6 @@ package com.example.fragments
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.fragments.movie.Movie
 import com.example.fragments.movie.network.MovieController
 import com.example.fragments.movie.network.ServerResponseListener
-import layout.MoviesAdapter
+import com.example.fragments.movie.MoviesAdapter
 import java.util.Timer
 import java.util.TimerTask
 
