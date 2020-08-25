@@ -1,12 +1,14 @@
 package com.example.fragments
 
 import android.annotation.SuppressLint
+import android.media.Image
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import com.example.fragments.movie.Movie
 import kotlinx.android.synthetic.main.fragment_second.movie_original_language
 import kotlinx.android.synthetic.main.fragment_second.movie_overview
@@ -26,6 +28,8 @@ class SecondFragment : Fragment() {
 
     @SuppressLint("SetTextI18n", "DefaultLocale")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val imageView = view.findViewById<ImageView>(R.id.posterImage)
+        Picasso.get().load("http://i.imgur.com/DvpvklR.png").into(imageView);
         arguments?.getParcelable<Movie>("keyData")?.run {
             movie_title.text = if (original_title != title) "TITLE:\n$title\n($original_title)" else "TITLE:\n$title"
             movie_vote_count.text = "VOTE COUNT:\n$vote_count"
