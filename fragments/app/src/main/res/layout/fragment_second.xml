@@ -13,8 +13,6 @@
         android:paddingHorizontal="@dimen/padding_small"
         android:background="@color/coral">
 
-
-        <!-- UIT BEFEJEZNI -->
         <ScrollView
             android:id="@+id/movie_overview_scrollbar"
             android:layout_width="match_parent"
