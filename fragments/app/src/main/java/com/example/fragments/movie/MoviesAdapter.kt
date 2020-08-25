@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.fragments.movie.Movie
 import com.example.fragments.R
 
-class MoviesAdapter(private val movies: List<Movie>, var clickListener: onMovieItemClickListener) :
+class MoviesAdapter(private var movies: List<Movie>, var clickListener: onMovieItemClickListener) :
     RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesAdapter.ViewHolder {
@@ -23,7 +23,6 @@ class MoviesAdapter(private val movies: List<Movie>, var clickListener: onMovieI
     override fun getItemCount(): Int = movies.size
 
     interface onMovieItemClickListener {
-
         fun onItemClick(item: Movie, position: Int)
     }
 
@@ -35,5 +34,10 @@ class MoviesAdapter(private val movies: List<Movie>, var clickListener: onMovieI
                 action.onItemClick(item, adapterPosition)
             }
         }
+    }
+
+    fun setMovies(mvs: List<Movie>) {
+        movies = mvs
+        notifyDataSetChanged()
     }
 }

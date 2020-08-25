@@ -32,7 +32,7 @@ open class MovieController() {
 		movieApi.listMovies(API_KEY, query).enqueue(object : Callback<MovieResponse> {
 			override fun onResponse(call: Call<MovieResponse>, response: Response<MovieResponse>) {
 				val movieResponse = response.body()
-				serverResponseListener.getMovies(movieResponse!!.results, succes = true)
+				serverResponseListener.getMovies(movieResponse!!.results)
 			}
 
 			override fun onFailure(call: Call<MovieResponse>, t: Throwable) {

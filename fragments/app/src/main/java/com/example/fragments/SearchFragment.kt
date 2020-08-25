@@ -1,8 +1,10 @@
 package com.example.fragments
 
+import android.net.IpSecManager
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +17,8 @@ import com.example.fragments.movie.Movie
 import com.example.fragments.movie.JsonParser
 import com.example.fragments.movie.MovieInflater
 import com.example.fragments.movie.MovieResults
+import com.example.fragments.movie.network.MovieController
+import com.example.fragments.movie.network.ServerResponseListener
 import layout.MoviesAdapter
 import java.util.Timer
 import java.util.TimerTask
@@ -23,12 +27,8 @@ class SearchFragment() : Fragment(), MoviesAdapter.onMovieItemClickListener {
 
     lateinit var moviesAdapter: MoviesAdapter
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        val json: String = MovieInflater.getJsonDataFromAsset(this.requireContext(), "movies.json").toString()
-        val jsonParser = JsonParser(json)
-        jsonParser.createObject()
-        val movieResults = MovieResults(jsonParser.getTotalResults(), jsonParser.getResultList())
-        moviesAdapter = MoviesAdapter(MovieInflater.createMovieList(movieResults.results), this)
         super.onCreate(savedInstanceState)
     }
 
@@ -43,7 +43,8 @@ class SearchFragment() : Fragment(), MoviesAdapter.onMovieItemClickListener {
     }
 
     private fun initRecyclerView(view: View) {
-        val rvMovies = view.findViewById<View>(R.id.moviesRecyclerView) as? RecyclerView
+        val rvMovies = view?.findViewById<View>(R.id.moviesRecyclerView) as? RecyclerView
+        moviesAdapter = MoviesAdapter(listOf(), this)
         rvMovies?.layoutManager = LinearLayoutManager(this.requireContext())
         rvMovies?.adapter = moviesAdapter
     }
@@ -57,9 +58,10 @@ class SearchFragment() : Fragment(), MoviesAdapter.onMovieItemClickListener {
                 timer.cancel()
                 timer = Timer()
                 if (searchField.text.isNotBlank()) {
-                    timerSchedule(timer, searchField.text)
+                    fillMovieList(searchField.text.toString())
                 }
             }
+
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         }
@@ -67,13 +69,13 @@ class SearchFragment() : Fragment(), MoviesAdapter.onMovieItemClickListener {
 
     }
 
-    private fun timerSchedule(timer: Timer, textToWrite: Editable) {
+    private fun timerSchedule(timer: Timer, textToWrite: String, doit: Unit) {
         timer.schedule(object : TimerTask() {
             override fun run() {
                 requireActivity().runOnUiThread {
-
                     Toast.makeText(requireActivity().applicationContext, textToWrite, Toast.LENGTH_LONG)
                         .show()
+                    doit
                 }
             }
         }, 500L)
@@ -93,5 +95,28 @@ class SearchFragment() : Fragment(), MoviesAdapter.onMovieItemClickListener {
             addToBackStack(null)
             commit()
         }
+    }
+
+    fun logit() {
+        Log.d("run?", "yes")
+    }
+
+    private fun fillMovieList(query: String) {
+        val timer = Timer()
+        val movieController = MovieController()
+        movieController.searchMovies(query, object : ServerResponseListener {
+            override fun getMovies(movies: List<Movie>) {
+                if (movies.isNotEmpty()) {
+                    //adapter here
+                    timerSchedule(timer, movies[0].title, moviesAdapter.setMovies(movies))
+
+                } else {
+                    timerSchedule(timer, "didn't find any movies", logit())
+                }
+
+            }
+
+        }
+        )
     }
 }

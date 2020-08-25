@@ -22,9 +22,9 @@ class SecondFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         arguments?.getParcelable<Movie>("keyData")?.run {
             movie_id.text = id.toString()
-            movie_release_date.text = releaseDate.toString()
+            movie_release_date.text = release_date
             movie_title.text = title
-            movie_vote_average.text = voteAverage.toString()
+            movie_vote_average.text = vote_average.toString()
         }
         super.onViewCreated(view, savedInstanceState)
     }
