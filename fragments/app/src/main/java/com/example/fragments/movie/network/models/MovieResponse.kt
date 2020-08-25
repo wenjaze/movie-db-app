@@ -1,5 +1,6 @@
 package com.example.fragments.movie.network.models
 
+import com.example.fragments.movie.Movie
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
