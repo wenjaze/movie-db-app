@@ -24,15 +24,16 @@ class SecondFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_second, container, false)
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "DefaultLocale")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         arguments?.getParcelable<Movie>("keyData")?.run {
+            movie_title.text = if (original_title != title) "TITLE:\n$title($original_title)" else "TITLE:\n$title"
             movie_vote_count.text = "VOTE COUNT:\n$vote_count"
             movie_original_language.text = "LANGUAGE:\n$original_language".toUpperCase()
             movie_overview.text = "OVERVIEW:\n$overview"
             movie_popularity.text = "POPULARITY:\n$popularity"
             movie_release_date.text = "RELEASE DATE:\n$release_date"
-            movie_title.text = "TITLE:\n$title"
+            movie_title.text = "TITLE:\n$original_title"
             movie_vote_average.text = "VOTE AVERAGE:\n$vote_average"
         }
         super.onViewCreated(view, savedInstanceState)
