@@ -28,7 +28,7 @@ class SecondFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         arguments?.getParcelable<Movie>("keyData")?.run {
             movie_vote_count.text = "VOTE COUNT:\n$vote_count"
-            movie_original_language.text = "LANGUAGE:\n$original_language"
+            movie_original_language.text = "LANGUAGE:\n$original_language".toUpperCase()
             movie_overview.text = "OVERVIEW:\n$overview"
             movie_popularity.text = "POPULARITY:\n$popularity"
             movie_release_date.text = "RELEASE DATE:\n$release_date"
