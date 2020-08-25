@@ -1,6 +1,7 @@
 package com.example.fragments.movie.network
 
 import android.util.Log
+import com.example.fragments.BuildConfig
 import com.example.fragments.movie.network.models.MovieResponse
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -12,7 +13,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 open class MovieController() {
 
-	private val API_KEY: String = "43a7ea280d085bd0376e108680615c7f"
+	private val API_KEY: String = BuildConfig.MOVIE_DB_API_KEY
 
 	fun searchMovies(query: String, serverResponseListener: ServerResponseListener) {
 		val movieApi = buildCall()
