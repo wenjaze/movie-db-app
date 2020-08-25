@@ -11,10 +11,13 @@ __*This is a documentation of what i've learnt during this trial project*__
   * _dimens.xml, styles.xml, colors.xml, strings.xml_
  * [**_Activity Lifecycle:bangbang:_**](https://developer.android.com/reference/android/app/Activity#ActivityLifecycle)
 
-### - [x] Swap 2 Fragments on button click:
+### *  [x] Swap 2 Fragments on button click:
 *  _return vs expression body_ 
 * _Null safety_
 * _Fragments Lifecycle_
 ### - [x] Create a RecyclerView, on listelement click ,navigate to SecondFragment
 * _RecyclerView semantics_
  * Adapter 
+
+* [x] Right here
+
