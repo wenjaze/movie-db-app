@@ -38,6 +38,7 @@ class MoviesAdapter(private var movies: List<Movie>, var clickListener: onMovieI
 
     fun clearAdapter() {
         movies = emptyList()
+        notifyDataSetChanged()
     }
 
     fun setMovies(mvs: List<Movie>) {

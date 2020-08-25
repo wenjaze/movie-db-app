@@ -94,9 +94,8 @@ class SearchFragment() : Fragment(), MoviesAdapter.onMovieItemClickListener {
 				if (movies.isNotEmpty()) {
 					timerSchedule(timer) { moviesAdapter.setMovies(movies) }
 				} else {
-					timerSchedule(
-						timer
-					) {
+					timerSchedule(timer) {
+						moviesAdapter.clearAdapter()
 						Toast.makeText(
 							requireActivity().applicationContext,
 							"Couldn't find any movies that matches : $query",
