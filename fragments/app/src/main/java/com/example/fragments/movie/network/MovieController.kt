@@ -20,7 +20,7 @@ open class MovieController() {
 		makeCall(movieApi, query, serverResponseListener)
 	}
 
-	fun buildCall(): MovieApi {
+	private fun buildCall(): MovieApi {
 		val moshi: Moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
 		val retrofit: Retrofit = Retrofit.Builder()
 			.baseUrl("https://api.themoviedb.org/3/")
@@ -29,7 +29,7 @@ open class MovieController() {
 		return retrofit.create(MovieApi::class.java)
 	}
 
-	fun makeCall(movieApi: MovieApi, query: String, serverResponseListener: ServerResponseListener) {
+	private fun makeCall(movieApi: MovieApi, query: String, serverResponseListener: ServerResponseListener) {
 		movieApi.listMovies(API_KEY, query).enqueue(object : Callback<MovieResponse> {
 			override fun onResponse(call: Call<MovieResponse>, response: Response<MovieResponse>) {
 				val movieResponse = response.body()
