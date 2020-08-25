@@ -12,7 +12,7 @@
 
     <style name="BaseText">
         <item name="android:textColor">@color/coral</item>
-        <item name="android:textSize">@dimen/text_size_medium</item>
+        <item name="android:textSize">@dimen/text_size_small</item>
         <item name="android:textStyle">bold</item>
     </style>
 

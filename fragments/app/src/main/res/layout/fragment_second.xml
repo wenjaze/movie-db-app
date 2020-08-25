@@ -11,57 +11,80 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="@dimen/padding_small">
-
+        <!-- UIT BEFEJEZNI -->
         <TextView
-            android:id="@+id/movie_title"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_gravity="center"
+            android:id="@+id/movie_overview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
             android:background="@drawable/coral_bg_item"
             android:gravity="center"
             android:textAppearance="@style/BaseText"
+            android:padding="@dimen/padding_small"
             app:layout_constrainedHeight="true"
-            app:layout_constraintHeight_percent=".25"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintHeight_percent=".20"
+            app:layout_constraintTop_toBottomOf="@id/movie_release_date"
             tools:showIn="@layout/fragment_second" />
 
         <TextView
-            android:id="@+id/movie_vote_average"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_gravity="center"
+            android:id="@+id/movie_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
             android:background="@drawable/coral_bg_item"
             android:gravity="center"
             android:textAppearance="@style/BaseText"
             app:layout_constrainedHeight="true"
-            app:layout_constraintHeight_percent=".25"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintHeight_percent=".20"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:showIn="@layout/fragment_second"
+            android:padding="@dimen/padding_small" />
+
+        <TextView
+            android:id="@+id/movie_vote_average"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:background="@drawable/coral_bg_item"
+            android:gravity="center"
+            android:textAppearance="@style/BaseText"
+            android:padding="@dimen/padding_small"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constrainedHeight="true"
+            app:layout_constraintHeight_percent=".20"
             app:layout_constraintTop_toBottomOf="@id/movie_title"
             tools:showIn="@layout/fragment_second" />
 
         <TextView
-            android:id="@+id/movie_id"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_gravity="center"
+            android:id="@+id/movie_popularity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
             android:background="@drawable/coral_bg_item"
             android:gravity="center"
             android:textAppearance="@style/BaseText"
+            android:padding="@dimen/padding_small"
+            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constrainedHeight="true"
-            app:layout_constraintHeight_percent=".25"
+            app:layout_constraintHeight_percent=".20"
             app:layout_constraintTop_toBottomOf="@id/movie_vote_average"
             tools:showIn="@layout/fragment_second" />
 
         <TextView
             android:id="@+id/movie_release_date"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
             android:background="@drawable/coral_bg_item"
             android:gravity="center"
             android:textAppearance="@style/BaseText"
+            android:padding="@dimen/padding_small"
+            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constrainedHeight="true"
-            app:layout_constraintHeight_percent=".25"
-            app:layout_constraintTop_toBottomOf="@id/movie_id" />
+            app:layout_constraintHeight_percent=".20"
+            app:layout_constraintTop_toBottomOf="@id/movie_popularity" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
