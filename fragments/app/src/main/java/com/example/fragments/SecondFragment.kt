@@ -3,6 +3,7 @@ package com.example.fragments
 import android.annotation.SuppressLint
 
 import android.os.Bundle
+import android.provider.Settings.Global.getString
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -20,6 +21,8 @@ import kotlinx.android.synthetic.main.fragment_second.movie_vote_count
 
 class SecondFragment : Fragment() {
 
+    private val posterWidth = getString(R.string.poster_width)
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -28,7 +31,7 @@ class SecondFragment : Fragment() {
 
     @SuppressLint("SetTextI18n", "DefaultLocale")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val baseURL = BuildConfig.BASE_URL
+        val baseURL = BuildConfig.BASE_URL+posterWidth
         val imageView = view.findViewById<ImageView>(R.id.posterImage)
 
         arguments?.getParcelable<Movie>("keyData")?.run {
