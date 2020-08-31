@@ -18,7 +18,7 @@ import com.example.fragments.movie.MoviesAdapter
 import java.util.Timer
 import java.util.TimerTask
 
-class SearchFragment() : Fragment(), MoviesAdapter.onMovieItemClickListener {
+class SearchFragment() : Fragment(), MoviesAdapter.OnMovieItemClickListener {
 
 	lateinit var moviesAdapter: MoviesAdapter
 	private var timer = Timer()
