@@ -49,14 +49,14 @@ __*This is a documentation of what i've learnt during this trial project*__
 
 
 ## TODO:
-* [ ] __remove__:
- * [ ] white_bg_item
- * [ ] Movie.kt unused vars
- * [ ] Empty block : {}
-* [ ] __fix__:
- * [ ] Movie.kt camelCases
- * [ ] onMovieItemClick -> OnMovieItemClick
+* [x] __remove__:
+ * [x] white_bg_item
+ * [x] Movie.kt unused vars
+ * [x] Empty block : {}
+* [x] __fix__:
+ * [x] Movie.kt camelCases
+ * [x] onMovieItemClick -> OnMovieItemClick
  * [ ] SecondFragment TextViews formatting
   - (2 separate TV. label -> resources)
- * [ ] baseUrl -> build.config -> build.gradle
- * [ ] timerSchedule 500L -> companion obj.
+ * [x] baseUrl -> build.config -> build.gradle
+ * [x] timerSchedule 500L -> companion obj.
