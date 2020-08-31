@@ -56,7 +56,7 @@ __*This is a documentation of what i've learnt during this trial project*__
 * [x] __fix__:
  * [x] Movie.kt camelCases
  * [x] onMovieItemClick -> OnMovieItemClick
- * [] SecondFragment TextViews formatting
+ * [ ] SecondFragment TextViews formatting
   - (2 separate TV. label -> resources)
  * [x] baseUrl -> build.config -> build.gradle
  * [x] timerSchedule 500L -> companion obj.
