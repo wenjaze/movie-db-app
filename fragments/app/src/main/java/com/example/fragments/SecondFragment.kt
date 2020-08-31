@@ -1,13 +1,16 @@
 package com.example.fragments
 
 import android.annotation.SuppressLint
+import android.media.Image
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import com.example.fragments.movie.Movie
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_second.movie_original_language
 import kotlinx.android.synthetic.main.fragment_second.movie_overview
 import kotlinx.android.synthetic.main.fragment_second.movie_popularity
@@ -26,7 +29,11 @@ class SecondFragment : Fragment() {
 
     @SuppressLint("SetTextI18n", "DefaultLocale")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        var baseURL = "https://image.tmdb.org/t/p/w200"
+        val imageView = view.findViewById<ImageView>(R.id.posterImage)
+
         arguments?.getParcelable<Movie>("keyData")?.run {
+            Picasso.get().load(baseURL + poster_path).into(imageView)
             movie_title.text = if (original_title != title) "TITLE:\n$title\n($original_title)" else "TITLE:\n$title"
             movie_vote_count.text = "VOTE COUNT:\n$vote_count"
             movie_original_language.text = "LANGUAGE:\n$original_language".toUpperCase()

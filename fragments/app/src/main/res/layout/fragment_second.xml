@@ -13,9 +13,19 @@
         android:paddingHorizontal="@dimen/padding_small"
         android:background="@color/coral">
 
+        <ImageView
+            android:id="@+id/posterImage"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/coral_bg_item"
+            app:layout_constraintLeft_toRightOf="@id/movie_overview_scrollbar"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/movie_overview_scrollbar"
+            app:layout_constraintTop_toTopOf="@id/movie_overview_scrollbar" />
+
         <ScrollView
             android:id="@+id/movie_overview_scrollbar"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="0dp"
             android:scrollbars="vertical"
             style="@style/SecondFragmentTextView"
@@ -23,7 +33,7 @@
             app:layout_constraintHeight_percent=".5"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/posterImage"
             app:layout_constraintTop_toBottomOf="@id/movie_release_date">
 
             <TextView
