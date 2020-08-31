@@ -70,7 +70,7 @@ class SearchFragment() : Fragment(), MoviesAdapter.OnMovieItemClickListener {
 					executeUnit()
 				}
 			}
-		}, 500L)
+		}, delay)
 	}
 
 	override fun onItemClick(item: Movie, position: Int) {
@@ -108,5 +108,9 @@ class SearchFragment() : Fragment(), MoviesAdapter.OnMovieItemClickListener {
 
 			}
 		})
+	}
+
+	companion object {
+		const val delay = 500L
 	}
 }

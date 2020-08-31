@@ -1,9 +1,8 @@
 package com.example.fragments
 
 import android.annotation.SuppressLint
-import android.media.Image
+
 import android.os.Bundle
-import android.text.method.ScrollingMovementMethod
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -29,7 +28,7 @@ class SecondFragment : Fragment() {
 
     @SuppressLint("SetTextI18n", "DefaultLocale")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        var baseURL = "https://image.tmdb.org/t/p/w200"
+        val baseURL = BuildConfig.BASE_URL
         val imageView = view.findViewById<ImageView>(R.id.posterImage)
 
         arguments?.getParcelable<Movie>("keyData")?.run {
