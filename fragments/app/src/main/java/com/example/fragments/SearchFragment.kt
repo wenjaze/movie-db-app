@@ -18,7 +18,7 @@ import com.example.fragments.movie.MoviesAdapter
 import java.util.Timer
 import java.util.TimerTask
 
-class SearchFragment() : Fragment(), MoviesAdapter.onMovieItemClickListener {
+class SearchFragment() : Fragment(), MoviesAdapter.OnMovieItemClickListener {
 
 	lateinit var moviesAdapter: MoviesAdapter
 	private var timer = Timer()
@@ -53,8 +53,11 @@ class SearchFragment() : Fragment(), MoviesAdapter.onMovieItemClickListener {
 				}
 			}
 
-			override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-			override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+			override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {/*no-op*/
+			}
+
+			override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {/*no-op*/
+			}
 		}
 		)
 
@@ -67,7 +70,7 @@ class SearchFragment() : Fragment(), MoviesAdapter.onMovieItemClickListener {
 					executeUnit()
 				}
 			}
-		}, 500L)
+		}, delay)
 	}
 
 	override fun onItemClick(item: Movie, position: Int) {
@@ -105,5 +108,9 @@ class SearchFragment() : Fragment(), MoviesAdapter.onMovieItemClickListener {
 
 			}
 		})
+	}
+
+	companion object {
+		const val delay = 500L
 	}
 }
