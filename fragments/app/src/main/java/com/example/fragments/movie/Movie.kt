@@ -1,19 +1,26 @@
 package com.example.fragments.movie
 
 import android.os.Parcelable
+import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 @JsonClass(generateAdapter = true)
 data class Movie(
-	val poster_path: String?,
+	@Json(name = "poster_path")
+	val posterPath: String?,
 	val overview: String,
-	val release_date: String?,
-	val original_title: String,
-	val original_language: String,
+	@Json(name = "release_date")
+	val releaseDate: String?,
+	@Json(name = "original_title")
+	val originalTitle: String,
+	@Json(name = "original_language")
+	val originalLanguage: String,
 	val title: String,
 	val popularity: Double,
-	val vote_count: Int,
-	val vote_average: Float
+	@Json(name = "vote_count")
+	val voteCount: Int,
+	@Json(name = "vote_average")
+	val voteAverage: Float
 ) : Parcelable

@@ -33,14 +33,14 @@ class SecondFragment : Fragment() {
         val imageView = view.findViewById<ImageView>(R.id.posterImage)
 
         arguments?.getParcelable<Movie>("keyData")?.run {
-            Picasso.get().load(baseURL + poster_path).into(imageView)
-            movie_title.text = if (original_title != title) "TITLE:\n$title\n($original_title)" else "TITLE:\n$title"
-            movie_vote_count.text = "VOTE COUNT:\n$vote_count"
-            movie_original_language.text = "LANGUAGE:\n$original_language".toUpperCase()
+            Picasso.get().load(baseURL + posterPath).into(imageView)
+            movie_title.text = if (originalTitle != title) "TITLE:\n$title\n($originalTitle)" else "TITLE:\n$title"
+            movie_vote_count.text = "VOTE COUNT:\n$voteCount"
+            movie_original_language.text = "LANGUAGE:\n$originalLanguage".toUpperCase()
             movie_overview.text = "OVERVIEW:\n$overview"
             movie_popularity.text = "POPULARITY:\n$popularity"
-            movie_release_date.text = "RELEASE DATE:\n$release_date"
-            movie_vote_average.text = "VOTE AVERAGE:\n$vote_average"
+            movie_release_date.text = "RELEASE DATE:\n$releaseDate"
+            movie_vote_average.text = "VOTE AVERAGE:\n$voteAverage"
         }
         super.onViewCreated(view, savedInstanceState)
     }
