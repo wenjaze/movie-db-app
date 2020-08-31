@@ -46,3 +46,17 @@ __*This is a documentation of what i've learnt during this trial project*__
  * [_OKHTTP_](https://square.github.io/okhttp/)
  * [_Retrofit_](https://square.github.io/retrofit/)
  * [_Api docs of search/movies_](https://developers.themoviedb.org/3/search/search-movies)
+
+
+## TODO:
+* [ ] __remove__:
+ * [ ] white_bg_item
+ * [ ] Movie.kt unused vars
+ * [ ] Empty block : {}
+* [ ] __fix__:
+ * [ ] Movie.kt camelCases
+ * [ ] onMovieItemClick -> OnMovieItemClick
+ * [ ] SecondFragment TextViews formatting
+  - (2 separate TV. label -> resources)
+ * [ ] baseUrl -> build.config -> build.gradle
+ * [ ] timerSchedule 500L -> companion obj.
