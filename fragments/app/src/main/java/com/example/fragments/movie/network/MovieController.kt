@@ -12,8 +12,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 open class MovieController() {
-	
-	private val API_KEY: String = MOVIE_DB_API_KEY
+
 
 	fun searchMovies(query: String, serverResponseListener: ServerResponseListener) {
 		val movieApi = buildCall()
@@ -30,7 +29,7 @@ open class MovieController() {
 	}
 
 	private fun makeCall(movieApi: MovieApi, query: String, serverResponseListener: ServerResponseListener) {
-		movieApi.listMovies(API_KEY, query).enqueue(object : Callback<MovieResponse> {
+		movieApi.listMovies(MOVIE_DB_API_KEY, query).enqueue(object : Callback<MovieResponse> {
 			override fun onResponse(call: Call<MovieResponse>, response: Response<MovieResponse>) {
 				val movieResponse = response.body()
 				serverResponseListener.getMovies(movieResponse!!.results)

@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import com.example.fragments.BuildConfig.BASE_URL
 import com.example.fragments.movie.Movie
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_second.movie_original_language
@@ -28,11 +29,10 @@ class SecondFragment : Fragment() {
 
     @SuppressLint("SetTextI18n", "DefaultLocale")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val baseURL = BuildConfig.BASE_URL
         val imageView = view.findViewById<ImageView>(R.id.posterImage)
 
         arguments?.getParcelable<Movie>("keyData")?.run {
-            Picasso.get().load(baseURL + posterPath).into(imageView)
+            Picasso.get().load(BASE_URL + posterPath).into(imageView)
             movie_title.text = if (originalTitle != title) "TITLE:\n$title\n($originalTitle)" else "TITLE:\n$title"
             movie_vote_count.text = "VOTE COUNT:\n$voteCount"
             movie_original_language.text = "LANGUAGE:\n$originalLanguage".toUpperCase()
