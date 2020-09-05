@@ -18,6 +18,7 @@ import kotlinx.android.synthetic.main.fragment_second.movie_release_date
 import kotlinx.android.synthetic.main.fragment_second.movie_title
 import kotlinx.android.synthetic.main.fragment_second.movie_vote_average
 import kotlinx.android.synthetic.main.fragment_second.movie_vote_count
+import java.util.Locale
 
 class SecondFragment : Fragment() {
 
@@ -27,15 +28,14 @@ class SecondFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_second, container, false)
 
-    @SuppressLint("SetTextI18n", "DefaultLocale")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val imageView = view.findViewById<ImageView>(R.id.posterImage)
 
         arguments?.getParcelable<Movie>("keyData")?.run {
-            Picasso.get().load(BASE_URL + posterPath).into(imageView)
-            movie_title.text = if (originalTitle == title) title else title + originalTitle
+            Picasso.get().load(BASE_URL+getString(R.string.movie_poster_width)+ posterPath).into(imageView)
+            movie_title.text = if (originalTitle == title) title else title +"\n"+ originalTitle
             movie_vote_count.text = voteCount.toString()
-            movie_original_language.text = originalLanguage
+            movie_original_language.text = originalLanguage.toUpperCase(Locale.ROOT)
             movie_overview.text = overview
             movie_popularity.text = popularity.toString()
             movie_release_date.text = releaseDate

@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingHorizontal="@dimen/padding_small"
+
         android:background="@color/coral">
 
         <ImageView
@@ -18,56 +18,96 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/coral_bg_item"
-            app:layout_constraintLeft_toRightOf="@id/movie_overview_scrollbar"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/movie_release_date"
+            app:layout_constraintRight_toRightOf="@id/movie_release_date"
             app:layout_constraintBottom_toBottomOf="@id/movie_overview_scrollbar"
             app:layout_constraintTop_toTopOf="@id/movie_overview_scrollbar" />
 
+
         <ScrollView
             android:id="@+id/movie_overview_scrollbar"
+            style="@style/SecondFragmentTextView"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:padding="0dp"
             android:scrollbars="vertical"
-            style="@style/SecondFragmentTextView"
             app:layout_constrainedHeight="true"
-            app:layout_constraintHeight_percent=".5"
-            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/posterImage"
-            app:layout_constraintTop_toBottomOf="@id/movie_release_date">
+            app:layout_constraintHeight_percent=".5"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/middle_guideline"
+            app:layout_constraintTop_toBottomOf="@id/movie_release_date"
+            app:layout_constraintVertical_bias="0.571">
 
-            <TextView
-                android:id="@+id/movie_overview"
-                android:gravity="center"
-                android:textAppearance="@style/BaseText"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_width="match_parent" />
+                android:layout_margin="0dp"
+                android:padding="0dp">
+
+                <TextView
+                    android:id="@+id/movie_overview_title"
+                    style="@style/SecondFragmentTitleTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="0dp"
+                    android:gravity="center"
+                    android:text="@string/movie_overview_title"
+                    android:textAppearance="@style/BaseText"
+                    app:layout_constraintBottom_toTopOf="@id/movie_overview"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/movie_overview"
+                    style="@style/SecondFragmentTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="fill"
+                    android:textAppearance="@style/BaseText"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/movie_overview_title" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </ScrollView>
 
-
         <TextView
-            style="@style/SecondFragmentTextView"
+            style="@style/SecondFragmentTitleTextView"
             android:id="@+id/movie_title_title"
             android:text="@string/movie_title_text"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintRight_toLeftOf="@id/middle_guideline"
-            app:layout_constraintBottom_toTopOf="@id/movie_title" />
-
-        <TextView
+            app:layout_constraintBottom_toTopOf="@id/movie_title_scrollview" />
+        <ScrollView
             style="@style/SecondFragmentTextView"
-            android:id="@+id/movie_title"
+            android:id="@+id/movie_title_scrollview"
+            android:scrollbars="vertical"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/movie_title_title"
             app:layout_constraintRight_toLeftOf="@id/middle_guideline"
-            app:layout_constraintBottom_toTopOf="@id/movie_vote_average_title" />
+            app:layout_constraintBottom_toTopOf="@id/movie_vote_average_title" >
+            <TextView
+                android:textAppearance="@style/BaseText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:id="@+id/movie_title" />
+        </ScrollView>
+
         <TextView
-            style="@style/SecondFragmentTextView"
+            style="@style/SecondFragmentTitleTextView"
             android:id="@+id/movie_vote_average_title"
             android:text="@string/movie_vote_average_text"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@id/middle_guideline"
-            app:layout_constraintTop_toBottomOf="@id/movie_title"
+            app:layout_constraintTop_toBottomOf="@id/movie_title_scrollview"
             app:layout_constraintBottom_toTopOf="@id/movie_vote_average" />
         <TextView
             style="@style/SecondFragmentTextView"
@@ -78,7 +118,7 @@
             app:layout_constraintBottom_toTopOf="@id/movie_vote_count_title" />
         <TextView
             android:id="@+id/movie_vote_count_title"
-            style="@style/SecondFragmentTextView"
+            style="@style/SecondFragmentTitleTextView"
             android:text="@string/movie_vote_count_text"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@id/middle_guideline"
@@ -94,7 +134,7 @@
 
         <TextView
             android:id="@+id/movie_original_language_title"
-            style="@style/SecondFragmentTextView"
+            style="@style/SecondFragmentTitleTextView"
             android:text="@string/movie_original_language_text"
             app:layout_constraintBottom_toTopOf="@id/movie_original_language"
             app:layout_constraintRight_toRightOf="parent"
@@ -110,7 +150,7 @@
 
         <TextView
             android:id="@+id/movie_popularity_title"
-            style="@style/SecondFragmentTextView"
+            style="@style/SecondFragmentTitleTextView"
             android:text="@string/movie_popularity_text"
             app:layout_constraintLeft_toRightOf="@+id/middle_guideline"
             app:layout_constraintRight_toRightOf="parent"
@@ -127,7 +167,7 @@
 
         <TextView
             android:id="@+id/movie_release_date_title"
-            style="@style/SecondFragmentTextView"
+            style="@style/SecondFragmentTitleTextView"
             android:text="@string/movie_release_date_text"
             app:layout_constraintLeft_toRightOf="@id/middle_guideline"
             app:layout_constraintRight_toRightOf="parent"

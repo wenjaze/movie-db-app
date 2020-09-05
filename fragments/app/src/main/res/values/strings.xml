@@ -10,4 +10,6 @@
     <string name="movie_original_language_text">ORIGINAL LANGUAGE</string>
     <string name="movie_popularity_text">POPULARITY</string>
     <string name="movie_release_date_text">RELEASE DATE</string>
+    <string name="movie_overview_title">OVERVIEW</string>
+    <string name="movie_poster_width">w200</string>
 </resources>
