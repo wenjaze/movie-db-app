@@ -18,7 +18,6 @@ import kotlinx.android.synthetic.main.fragment_second.movie_release_date
 import kotlinx.android.synthetic.main.fragment_second.movie_title
 import kotlinx.android.synthetic.main.fragment_second.movie_vote_average
 import kotlinx.android.synthetic.main.fragment_second.movie_vote_count
-import java.util.Locale
 
 class SecondFragment : Fragment() {
 
@@ -28,18 +27,20 @@ class SecondFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_second, container, false)
 
+    @SuppressLint("SetTextI18n", "DefaultLocale")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val baseURL = BASE_URL
         val imageView = view.findViewById<ImageView>(R.id.posterImage)
 
         arguments?.getParcelable<Movie>("keyData")?.run {
-            Picasso.get().load(BASE_URL+getString(R.string.movie_poster_width)+ posterPath).into(imageView)
-            movie_title.text = if (originalTitle == title) title else title +"\n"+ originalTitle
-            movie_vote_count.text = voteCount.toString()
-            movie_original_language.text = originalLanguage.toUpperCase(Locale.ROOT)
-            movie_overview.text = overview
-            movie_popularity.text = popularity.toString()
-            movie_release_date.text = releaseDate
-            movie_vote_average.text = voteAverage.toString()
+            Picasso.get().load(baseURL + posterPath).into(imageView)
+            movie_title.text = if (originalTitle != title) "TITLE:\n$title\n($originalTitle)" else "TITLE:\n$title"
+            movie_vote_count.text = "VOTE COUNT:\n$voteCount"
+            movie_original_language.text = "LANGUAGE:\n$originalLanguage".toUpperCase()
+            movie_overview.text = "OVERVIEW:\n$overview"
+            movie_popularity.text = "POPULARITY:\n$popularity"
+            movie_release_date.text = "RELEASE DATE:\n$releaseDate"
+            movie_vote_average.text = "VOTE AVERAGE:\n$voteAverage"
         }
         super.onViewCreated(view, savedInstanceState)
     }
