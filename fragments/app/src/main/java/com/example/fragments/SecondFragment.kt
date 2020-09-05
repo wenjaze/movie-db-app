@@ -33,13 +33,13 @@ class SecondFragment : Fragment() {
 
         arguments?.getParcelable<Movie>("keyData")?.run {
             Picasso.get().load(BASE_URL + posterPath).into(imageView)
-            movie_title.text = if (originalTitle != title) "TITLE:\n$title\n($originalTitle)" else "TITLE:\n$title"
-            movie_vote_count.text = "VOTE COUNT:\n$voteCount"
-            movie_original_language.text = "LANGUAGE:\n$originalLanguage".toUpperCase()
-            movie_overview.text = "OVERVIEW:\n$overview"
-            movie_popularity.text = "POPULARITY:\n$popularity"
-            movie_release_date.text = "RELEASE DATE:\n$releaseDate"
-            movie_vote_average.text = "VOTE AVERAGE:\n$voteAverage"
+            movie_title.text = if (originalTitle == title) title else title + originalTitle
+            movie_vote_count.text = voteCount.toString()
+            movie_original_language.text = originalLanguage
+            movie_overview.text = overview
+            movie_popularity.text = popularity.toString()
+            movie_release_date.text = releaseDate
+            movie_vote_average.text = voteAverage.toString()
         }
         super.onViewCreated(view, savedInstanceState)
     }
