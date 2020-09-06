@@ -7,13 +7,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fragments.R
 
-class MoviesAdapter(private var movies: List<Movie>, var clickListener: OnMovieItemClickListener) :
+class MoviesAdapter(private var movies: List<Movie>,private var clickListener: OnMovieItemClickListener) :
 	RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
 
-	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-		val movieItemView = LayoutInflater.from(parent.context).inflate(R.layout.item_movie, parent, false)
-		return ViewHolder(movieItemView)
-	}
+	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
+		ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_movie, parent, false))
 
 	override fun onBindViewHolder(viewholder: ViewHolder, position: Int) {
 		viewholder.init(movies[position], clickListener)
