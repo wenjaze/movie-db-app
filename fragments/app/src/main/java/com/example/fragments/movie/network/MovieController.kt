@@ -2,6 +2,7 @@ package com.example.fragments.movie.network
 
 import android.util.Log
 import com.example.fragments.BuildConfig.MOVIE_DB_API_KEY
+import com.example.fragments.BuildConfig.BASE_URL_API
 import com.example.fragments.movie.network.models.MovieResponse
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -22,7 +23,7 @@ open class MovieController() {
 	private fun buildCall(): MovieApi {
 		val moshi: Moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
 		val retrofit: Retrofit = Retrofit.Builder()
-			.baseUrl("https://api.themoviedb.org/3/")
+			.baseUrl(BASE_URL_API)
 			.addConverterFactory(MoshiConverterFactory.create(moshi))
 			.build()
 		return retrofit.create(MovieApi::class.java)
