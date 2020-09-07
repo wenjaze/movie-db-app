@@ -1,4 +1,4 @@
-package com.example.fragments.movie.network
+package com.example.fragments.movie.network.api
 
 import com.example.fragments.movie.network.models.MovieResponse
 import retrofit2.http.GET

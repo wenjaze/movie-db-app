@@ -12,8 +12,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fragments.movie.Movie
-import com.example.fragments.movie.network.MovieController
-import com.example.fragments.movie.network.ServerResponseListener
+import com.example.fragments.movie.network.utils.MovieController
+import com.example.fragments.movie.network.utils.ServerResponseListener
 import com.example.fragments.movie.MoviesAdapter
 import java.util.Timer
 import java.util.TimerTask

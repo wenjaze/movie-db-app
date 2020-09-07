@@ -1,6 +1,8 @@
-package com.example.fragments.movie.network
+package com.example.fragments.movie.network.utils
 
 import com.example.fragments.BuildConfig
+import com.example.fragments.movie.network.api.MovieApi
+import com.example.fragments.movie.network.api.MoviePopularApi
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit

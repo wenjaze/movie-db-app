@@ -1,4 +1,4 @@
-package com.example.fragments.movie.network
+package com.example.fragments.movie.network.utils
 
 import com.example.fragments.movie.Movie
 

@@ -1,4 +1,4 @@
-package com.example.fragments.movie.network
+package com.example.fragments.movie.network.utils
 
 import android.util.Log
 import com.example.fragments.BuildConfig.MOVIE_DB_API_KEY
