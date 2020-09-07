@@ -1,4 +1,4 @@
-package com.example.fragments.movie
+package com.example.fragments.movie.network.models
 
 import android.os.Parcelable
 import com.squareup.moshi.Json

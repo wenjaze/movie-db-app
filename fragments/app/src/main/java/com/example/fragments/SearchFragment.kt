@@ -11,7 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.fragments.movie.Movie
+import com.example.fragments.movie.network.models.Movie
 import com.example.fragments.movie.network.utils.MovieController
 import com.example.fragments.movie.network.utils.ServerResponseListener
 import com.example.fragments.movie.MoviesAdapter
@@ -23,6 +23,11 @@ class SearchFragment() : Fragment(), MoviesAdapter.OnMovieItemClickListener {
 	val movieController = MovieController()
 	lateinit var moviesAdapter: MoviesAdapter
 	private var timer = Timer()
+
+	override fun onCreate(savedInstanceState: Bundle?) {
+		fillPopularMovieList()
+		super.onCreate(savedInstanceState)
+	}
 
 	override fun onCreateView(
 		inflater: LayoutInflater, container: ViewGroup?,
@@ -39,7 +44,6 @@ class SearchFragment() : Fragment(), MoviesAdapter.OnMovieItemClickListener {
 		moviesAdapter = MoviesAdapter(listOf(), this)
 		rvMovies?.layoutManager = LinearLayoutManager(this.requireContext())
 		rvMovies?.adapter = moviesAdapter
-		fillPopularMovieList()
 	}
 
 	private fun initSearchBar(view: View) {

@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fragments.R
+import com.example.fragments.movie.network.models.Movie
 
 class MoviesAdapter(private var movies: List<Movie>,private var clickListener: OnMovieItemClickListener) :
 	RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {

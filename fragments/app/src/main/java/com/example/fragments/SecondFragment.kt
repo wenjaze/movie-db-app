@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.example.fragments.BuildConfig.BASE_URL
-import com.example.fragments.movie.Movie
+import com.example.fragments.movie.network.models.Movie
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_second.movie_original_language
 import kotlinx.android.synthetic.main.fragment_second.movie_overview
