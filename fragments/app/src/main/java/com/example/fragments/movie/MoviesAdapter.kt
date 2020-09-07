@@ -24,7 +24,7 @@ class MoviesAdapter(private var movies: List<Movie>,private var clickListener: O
 	}
 
 	inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-		val movieTitleView = itemView.findViewById<TextView>(R.id.movieItem)
+		private val movieTitleView: TextView = itemView.findViewById(R.id.movieItem)
 		fun init(item: Movie, action: OnMovieItemClickListener) {
 			movieTitleView.text = item.title
 			itemView.setOnClickListener() {

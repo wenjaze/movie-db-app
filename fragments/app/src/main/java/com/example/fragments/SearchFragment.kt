@@ -20,6 +20,7 @@ import java.util.TimerTask
 
 class SearchFragment() : Fragment(), MoviesAdapter.OnMovieItemClickListener {
 
+	val movieController = MovieController()
 	lateinit var moviesAdapter: MoviesAdapter
 	private var timer = Timer()
 
@@ -38,6 +39,7 @@ class SearchFragment() : Fragment(), MoviesAdapter.OnMovieItemClickListener {
 		moviesAdapter = MoviesAdapter(listOf(), this)
 		rvMovies?.layoutManager = LinearLayoutManager(this.requireContext())
 		rvMovies?.adapter = moviesAdapter
+		fillPopularMovieList()
 	}
 
 	private fun initSearchBar(view: View) {
@@ -45,7 +47,6 @@ class SearchFragment() : Fragment(), MoviesAdapter.OnMovieItemClickListener {
 
 		searchField?.addTextChangedListener(object : TextWatcher {
 			override fun afterTextChanged(s: Editable?) {
-
 				if (searchField.text.isNotBlank()) {
 					timer.cancel()
 					timer = Timer()
@@ -88,6 +89,13 @@ class SearchFragment() : Fragment(), MoviesAdapter.OnMovieItemClickListener {
 			commit()
 		}
 	}
+	private fun fillPopularMovieList(){
+		movieController.getPopularMovies(object : ServerResponseListener {
+			override fun getMovies(movies: List<Movie>) {
+				moviesAdapter.setMovies(movies)
+			}
+		})
+	}
 
 	private fun fillMovieList(query: String) {
 		val movieController = MovieController()
@@ -105,7 +113,6 @@ class SearchFragment() : Fragment(), MoviesAdapter.OnMovieItemClickListener {
 						).show()
 					}
 				}
-
 			}
 		})
 	}
