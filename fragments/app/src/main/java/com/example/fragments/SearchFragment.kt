@@ -25,8 +25,8 @@ class SearchFragment() : Fragment(), MoviesAdapter.OnMovieItemClickListener {
 	private var timer = Timer()
 
 	override fun onCreate(savedInstanceState: Bundle?) {
-		fillPopularMovieList()
 		super.onCreate(savedInstanceState)
+		fillPopularMovieList()
 	}
 
 	override fun onCreateView(
@@ -55,6 +55,9 @@ class SearchFragment() : Fragment(), MoviesAdapter.OnMovieItemClickListener {
 					timer.cancel()
 					timer = Timer()
 					fillMovieList(searchField.text.toString())
+				}
+				else {
+					fillPopularMovieList()
 				}
 			}
 
@@ -93,7 +96,8 @@ class SearchFragment() : Fragment(), MoviesAdapter.OnMovieItemClickListener {
 			commit()
 		}
 	}
-	private fun fillPopularMovieList(){
+
+	private fun fillPopularMovieList() {
 		movieController.getPopularMovies(object : ServerResponseListener {
 			override fun getMovies(movies: List<Movie>) {
 				moviesAdapter.setMovies(movies)
