@@ -1,13 +1,10 @@
 package com.example.fragments.movie.network.models
 
-import android.os.Parcelable
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import kotlinx.android.parcel.Parcelize
 
 @JsonClass(generateAdapter = true)
-data class Movie(
-	val id : Int,
+data class MovieDetails(
 	@Json(name = "poster_path")
 	val posterPath: String?,
 	val overview: String,
@@ -15,10 +12,9 @@ data class Movie(
 	val releaseDate: String?,
 	@Json(name = "original_title")
 	val originalTitle: String,
-	@Json(name = "original_language")
-	val originalLanguage: String,
+	val budget: Int,
 	val title: String,
-	val popularity: Double,
+	val revenue: Int,
 	@Json(name = "vote_count")
 	val voteCount: Int,
 	@Json(name = "vote_average")

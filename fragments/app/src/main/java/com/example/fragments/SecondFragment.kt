@@ -9,12 +9,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.example.fragments.BuildConfig.BASE_URL
-import com.example.fragments.movie.network.models.Movie
+import com.example.fragments.movie.network.models.MovieDetails
+import com.example.fragments.movie.network.utils.DetailsResponseListener
+import com.example.fragments.movie.network.utils.MovieController
+import com.squareup.moshi.Json
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.fragment_second.movie_original_language
+import kotlinx.android.synthetic.main.fragment_second.movie_budget
 import kotlinx.android.synthetic.main.fragment_second.movie_overview
-import kotlinx.android.synthetic.main.fragment_second.movie_popularity
-import kotlinx.android.synthetic.main.fragment_second.movie_release_date
+import kotlinx.android.synthetic.main.fragment_second.movie_revenue
 import kotlinx.android.synthetic.main.fragment_second.movie_title
 import kotlinx.android.synthetic.main.fragment_second.movie_vote_average
 import kotlinx.android.synthetic.main.fragment_second.movie_vote_count
@@ -27,20 +29,34 @@ class SecondFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_second, container, false)
 
+
     @SuppressLint("SetTextI18n", "DefaultLocale")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val imageView = view.findViewById<ImageView>(R.id.posterImage)
-        arguments?.getParcelable<Movie>("keyData")?.run {
-            Picasso.get().load(BASE_URL+getString(R.string.movie_poster_width)+posterPath).into(imageView)
-            movie_title.text = if (originalTitle != title) title +"\n"+ originalTitle else title
-            movie_vote_count.text = voteCount.toString()
-            movie_original_language.text = originalLanguage.toUpperCase()
-            movie_overview.text = overview
-            movie_popularity.text = popularity.toString()
-            movie_release_date.text = releaseDate
-            movie_vote_average.text = voteAverage.toString()
-        }
         super.onViewCreated(view, savedInstanceState)
+        val imageView = view.findViewById<ImageView>(R.id.posterImage)
+        val movieId = arguments?.getInt("movieId")
+        getDetailsData(movieId,imageView)
+
+    }
+    private fun getDetailsData(id:Int?,imageView:ImageView){
+        val movieController = MovieController()
+        id?.let {
+            movieController.getDetails(id,object : DetailsResponseListener{
+            override fun getDetails(details: MovieDetails?) {
+                details?.run {
+                    movie_budget.text = budget.toString()
+                    movie_title.text = title
+                    movie_overview.text = overview
+                    movie_revenue.text = revenue.toString()
+                    movie_vote_average.text = voteAverage.toString()
+                    movie_vote_count.text = voteCount.toString()
+                    Picasso
+                        .get()
+                        .load(BASE_URL+getString(R.string.movie_poster_width)+posterPath)
+                        .into(imageView)
+                }
+            }
+        }) }
     }
 
 }

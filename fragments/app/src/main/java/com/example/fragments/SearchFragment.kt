@@ -47,16 +47,15 @@ class SearchFragment() : Fragment(), MoviesAdapter.OnMovieItemClickListener {
 	}
 
 	private fun initSearchBar(view: View) {
+		
 		val searchField = view.findViewById<View>(R.id.searchField) as? EditText
-
 		searchField?.addTextChangedListener(object : TextWatcher {
 			override fun afterTextChanged(s: Editable?) {
 				if (searchField.text.isNotBlank()) {
 					timer.cancel()
 					timer = Timer()
 					fillMovieList(searchField.text.toString())
-				}
-				else {
+				} else {
 					fillPopularMovieList()
 				}
 			}
@@ -68,7 +67,6 @@ class SearchFragment() : Fragment(), MoviesAdapter.OnMovieItemClickListener {
 			}
 		}
 		)
-
 	}
 
 	private fun timerSchedule(timer: Timer, executeUnit: () -> Unit) {
@@ -83,7 +81,7 @@ class SearchFragment() : Fragment(), MoviesAdapter.OnMovieItemClickListener {
 
 	override fun onItemClick(item: Movie, position: Int) {
 		val bundle = Bundle()
-		bundle.putParcelable("keyData", item)
+		bundle.putInt("movieId", item.id)
 		val secondFragment = SecondFragment()
 		secondFragment.arguments = bundle
 		switchToSecondFragment(secondFragment)

@@ -2,6 +2,7 @@ package com.example.fragments.movie.network.utils
 
 import com.example.fragments.BuildConfig
 import com.example.fragments.movie.network.api.MovieApi
+import com.example.fragments.movie.network.api.MovieDetailsApi
 import com.example.fragments.movie.network.api.MoviePopularApi
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -15,6 +16,7 @@ open class CallBuilder() {
 			.addConverterFactory(MoshiConverterFactory.create(moshi))
 			.build()
 
+	protected fun buildDetailsCall(): MovieDetailsApi = retrofit().create(MovieDetailsApi::class.java)
 	protected fun buildPopularCall(): MoviePopularApi = retrofit().create(MoviePopularApi::class.java)
 	protected fun buildMoviesCall(): MovieApi = retrofit().create(MovieApi::class.java)
 }
