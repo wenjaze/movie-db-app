@@ -1,3 +1,4 @@
+/*
 package com.example.fragments.movie.network.utils
 
 import android.util.Log
@@ -63,4 +64,4 @@ open class MovieController() : CallBuilder() {
 	}
 
 
-}
+}*/

@@ -12,15 +12,15 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fragments.movie.network.models.Movie
-import com.example.fragments.movie.network.utils.MovieController
 import com.example.fragments.movie.network.utils.ServerResponseListener
 import com.example.fragments.movie.MoviesAdapter
+import com.example.fragments.movie.network.utils.MovieCall
+import com.example.fragments.movie.network.utils.MoviePopularCall
 import java.util.Timer
 import java.util.TimerTask
 
 class SearchFragment() : Fragment(), MoviesAdapter.OnMovieItemClickListener {
 
-	val movieController = MovieController()
 	lateinit var moviesAdapter: MoviesAdapter
 	private var timer = Timer()
 
@@ -96,31 +96,28 @@ class SearchFragment() : Fragment(), MoviesAdapter.OnMovieItemClickListener {
 	}
 
 	private fun fillPopularMovieList() {
-		movieController.getPopularMovies(object : ServerResponseListener {
-			override fun getMovies(movies: List<Movie>) {
-				moviesAdapter.setMovies(movies)
-			}
-		})
+		val popularMovies = MoviePopularCall()
+		val movies = popularMovies.getPopularMovies()
+		moviesAdapter.setMovies(movies)
 	}
 
 	private fun fillMovieList(query: String) {
-		val movieController = MovieController()
-		movieController.searchMovies(query, object : ServerResponseListener {
-			override fun getMovies(movies: List<Movie>) {
-				if (movies.isNotEmpty()) {
-					timerSchedule(timer) { moviesAdapter.setMovies(movies) }
-				} else {
-					timerSchedule(timer) {
-						moviesAdapter.clearAdapter()
-						Toast.makeText(
-							requireActivity().applicationContext,
-							"Couldn't find any movies that matches : $query",
-							Toast.LENGTH_LONG
-						).show()
-					}
-				}
+		val movieCall = MovieCall()
+		val movies = movieCall.getMovies()
+		if (movies.isNotEmpty()) {
+			timerSchedule(timer) { moviesAdapter.setMovies(movies) }
+		}
+		else
+		{
+			timerSchedule(timer) {
+				moviesAdapter.clearAdapter()
+				Toast.makeText(
+					requireActivity().applicationContext,
+					"Couldn't find any movies that matches : $query",
+					Toast.LENGTH_LONG
+				).show()
 			}
-		})
+		}
 	}
 
 	companion object {
