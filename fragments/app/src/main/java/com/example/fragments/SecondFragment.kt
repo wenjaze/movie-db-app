@@ -11,8 +11,7 @@ import android.widget.ImageView
 import com.example.fragments.BuildConfig.BASE_URL
 import com.example.fragments.movie.network.models.MovieDetails
 import com.example.fragments.movie.network.utils.DetailsResponseListener
-import com.example.fragments.movie.network.utils.MovieController
-import com.squareup.moshi.Json
+import com.example.fragments.movie.network.utils.MovieDetailsCall
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_second.movie_budget
 import kotlinx.android.synthetic.main.fragment_second.movie_overview
@@ -41,27 +40,22 @@ class SecondFragment : Fragment() {
 	}
 
 	private fun getDetailsData(id: Int?, imageView: ImageView) {
-		val movieController = MovieController()
-		id?.let {
-			movieController.getDetails(id, object : DetailsResponseListener {
-                override fun getDetails(details: MovieDetails?) {
-                    details?.run {
-                        movie_budget.text =
-                            if (budget == 0) "No data" else NumberFormat.getInstance().format(budget) + " $"
-                        movie_title.text = title
-                        movie_overview.text = overview
-                        movie_revenue.text =
-                            if (revenue == 0) "No data" else NumberFormat.getInstance().format(revenue) + " $"
-                        movie_vote_average.text = voteAverage.toString()
-                        movie_vote_count.text = voteCount.toString()
-                        movie_release_date.text = releaseDate
-                        Picasso
-                            .get()
-                            .load(BASE_URL + getString(R.string.movie_poster_width) + posterPath)
-                            .into(imageView)
-                    }
-                }
-            })
+		val movieDetails = MovieDetailsCall()
+		id?.let { movieDetails.getDetails(it).run{
+				movie_budget.text =
+					if (budget == 0) "No data" else NumberFormat.getInstance().format(budget) + " $"
+				movie_title.text = title
+				movie_overview.text = overview
+				movie_revenue.text =
+					if (revenue == 0) "No data" else NumberFormat.getInstance().format(revenue) + " $"
+				movie_vote_average.text = voteAverage.toString()
+				movie_vote_count.text = voteCount.toString()
+				movie_release_date.text = releaseDate
+				Picasso
+					.get()
+					.load(BASE_URL + getString(R.string.movie_poster_width) + posterPath)
+					.into(imageView)
+			}
 		}
 	}
 

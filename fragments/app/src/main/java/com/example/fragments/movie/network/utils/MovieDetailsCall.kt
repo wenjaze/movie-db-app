@@ -8,7 +8,8 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 class MovieDetailsCall : CallBuilder(){
-	fun getDetails(id:Int) = makeDetailsCall(id)
+	private lateinit var movieDetails : MovieDetails
+	fun getDetails(id:Int) = movieDetails
 
 	private fun makeDetailsCall(id: Int){
 		val compositeDisposable = CompositeDisposable()
@@ -25,5 +26,7 @@ class MovieDetailsCall : CallBuilder(){
 		Log.d("Error:",t?.message.toString())
 	}
 
-	private fun onResponse(response: MovieDetails): MovieDetails = response
+	private fun onResponse(response: MovieDetails) {
+		movieDetails = response
+	}
 }
