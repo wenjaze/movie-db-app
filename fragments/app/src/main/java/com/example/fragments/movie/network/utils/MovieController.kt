@@ -1,18 +1,21 @@
 package com.example.fragments.movie.network.utils
 
 import android.util.Log
+import android.widget.Toast
 import com.example.fragments.BuildConfig.MOVIE_DB_API_KEY
+import com.example.fragments.movie.network.models.Movie
 import com.example.fragments.movie.network.models.MovieDetails
 import com.example.fragments.movie.network.models.MovieResponse
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.schedulers.Schedulers
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 open class MovieController() : CallBuilder() {
 
-	fun searchMovies(query: String, serverResponseListener: ServerResponseListener) {
-		makeCall(query, serverResponseListener)
-	}
+	fun getMovies(query: String) = makeMoviesCall(query)
 
 	fun getPopularMovies(serverResponseListener: ServerResponseListener) {
 		makePopularCall(serverResponseListener)
@@ -21,18 +24,23 @@ open class MovieController() : CallBuilder() {
 		makeDetailsCall(movie_Id,detailsResponseListener)
 	}
 
-	private fun makeCall(query: String, serverResponseListener: ServerResponseListener) {
-		buildMoviesCall().listMovies(MOVIE_DB_API_KEY, query).enqueue(object : Callback<MovieResponse> {
-			override fun onResponse(call: Call<MovieResponse>, response: Response<MovieResponse>) {
-				val movieResponse = response.body()
-				movieResponse?.results?.let { serverResponseListener.getMovies(it) }
-			}
-
-			override fun onFailure(call: Call<MovieResponse>, t: Throwable) {
-				Log.e(MovieController::class.java.simpleName, t.message!!)
-			}
-		})
+	private fun makeMoviesCall(query: String){
+		val compositeDisposable = CompositeDisposable()
+		compositeDisposable.add(
+			buildMoviesCall()
+				.listMovies(MOVIE_DB_API_KEY,query)
+				.observeOn(AndroidSchedulers.mainThread())
+				.subscribeOn(Schedulers.io())
+				.subscribe({response -> onResponse(response)}, {t -> onFailure(t)})
+		)
 	}
+
+	private fun onFailure(t: Throwable?) {
+		Log.d("Error:",t?.message.toString())
+	}
+
+	private fun onResponse(response: MovieResponse?): List<Movie>? = response?.results
+
 
 	private fun makePopularCall(serverResponseListener: ServerResponseListener) {
 		buildPopularCall().listPopularMovies(MOVIE_DB_API_KEY).enqueue(object : Callback<MovieResponse> {
@@ -57,4 +65,6 @@ open class MovieController() : CallBuilder() {
 			}
 		})
 	}
+
+
 }

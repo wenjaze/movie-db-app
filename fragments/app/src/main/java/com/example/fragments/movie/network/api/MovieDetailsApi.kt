@@ -1,6 +1,7 @@
 package com.example.fragments.movie.network.api
 
 import com.example.fragments.movie.network.models.MovieDetails
+import io.reactivex.rxjava3.core.Observable
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -11,5 +12,5 @@ interface MovieDetailsApi {
 	fun getDetails(
 		@Path("movie_id") movieId:Int?,
 		@Query("api_key") apiKey: String
-	): Call<MovieDetails>
+	): Observable<MovieDetails>
 }
