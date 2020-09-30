@@ -9,7 +9,10 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 
 class MovieDetailsCall : CallBuilder(){
 	private lateinit var movieDetails : MovieDetails
-	fun getDetails(id:Int) = movieDetails
+	fun getDetails(id:Int) : MovieDetails {
+		makeDetailsCall(id)
+		return movieDetails
+	}
 
 	private fun makeDetailsCall(id: Int){
 		val compositeDisposable = CompositeDisposable()

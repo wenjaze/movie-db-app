@@ -10,7 +10,10 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 
 class MovieCall : CallBuilder() {
 	private var moviesList = emptyList<Movie>()
-	fun getMovies() = moviesList
+	fun getMovies(query: String) : List<Movie>{
+		makeMoviesCall(query)
+		return moviesList
+	}
 
 	private fun makeMoviesCall(query: String) {
 		val compositeDisposable = CompositeDisposable()

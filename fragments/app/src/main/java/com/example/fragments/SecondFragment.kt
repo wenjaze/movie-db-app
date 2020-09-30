@@ -9,8 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.example.fragments.BuildConfig.BASE_URL
-import com.example.fragments.movie.network.models.MovieDetails
-import com.example.fragments.movie.network.utils.DetailsResponseListener
 import com.example.fragments.movie.network.utils.MovieDetailsCall
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_second.movie_budget

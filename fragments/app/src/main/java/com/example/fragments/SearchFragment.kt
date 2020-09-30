@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fragments.movie.network.models.Movie
-import com.example.fragments.movie.network.utils.ServerResponseListener
 import com.example.fragments.movie.MoviesAdapter
 import com.example.fragments.movie.network.utils.MovieCall
 import com.example.fragments.movie.network.utils.MoviePopularCall

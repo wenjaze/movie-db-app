@@ -11,7 +11,10 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 
 class MoviePopularCall : CallBuilder() {
 	private var popularMovies = emptyList<Movie>()
-	fun getPopularMovies() = popularMovies
+	fun getPopularMovies() : List<Movie>{
+		makePopularCall()
+		return popularMovies
+	}
 
 	private fun makePopularCall(){
 		val compositeDisposable = CompositeDisposable()
