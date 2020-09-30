@@ -15,7 +15,7 @@ import retrofit2.Response
 
 open class MovieController() : CallBuilder() {
 
-	fun getMovies(query: String) = makeMoviesCall(query)
+
 
 	fun getPopularMovies(serverResponseListener: ServerResponseListener) {
 		makePopularCall(serverResponseListener)
@@ -35,11 +35,7 @@ open class MovieController() : CallBuilder() {
 		)
 	}
 
-	private fun onFailure(t: Throwable?) {
-		Log.d("Error:",t?.message.toString())
-	}
 
-	private fun onResponse(response: MovieResponse?): List<Movie>? = response?.results
 
 
 	private fun makePopularCall(serverResponseListener: ServerResponseListener) {
