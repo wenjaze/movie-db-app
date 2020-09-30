@@ -103,7 +103,7 @@ class SearchFragment() : Fragment(), MoviesAdapter.OnMovieItemClickListener {
 
 	private fun fillMovieList(query: String) {
 		val movieCall = MovieCall()
-		val movies = movieCall.getMovies()
+		val movies = movieCall.getMovies(query)
 		if (movies.isNotEmpty()) {
 			timerSchedule(timer) { moviesAdapter.setMovies(movies) }
 		}
