@@ -20,7 +20,7 @@ import java.util.TimerTask
 
 class SearchFragment() : Fragment(), MoviesAdapter.OnMovieItemClickListener {
 
-	lateinit var moviesAdapter: MoviesAdapter
+	private var moviesAdapter: MoviesAdapter = MoviesAdapter(listOf(), this)
 	private var timer = Timer()
 
 	override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,7 +40,6 @@ class SearchFragment() : Fragment(), MoviesAdapter.OnMovieItemClickListener {
 
 	private fun initRecyclerView(view: View) {
 		val rvMovies = view.findViewById<View>(R.id.moviesRecyclerView) as? RecyclerView
-		moviesAdapter = MoviesAdapter(listOf(), this)
 		rvMovies?.layoutManager = LinearLayoutManager(this.requireContext())
 		rvMovies?.adapter = moviesAdapter
 	}
@@ -103,7 +102,7 @@ class SearchFragment() : Fragment(), MoviesAdapter.OnMovieItemClickListener {
 	private fun fillMovieList(query: String) {
 		val movieCall = MovieCall()
 		val movies = movieCall.getMovies(query)
-		if (movies.isNotEmpty()) {
+		if (movies!!.isNotEmpty()) {
 			timerSchedule(timer) { moviesAdapter.setMovies(movies) }
 		}
 		else
