@@ -15,17 +15,28 @@ import com.example.fragments.movie.network.models.Movie
 import com.example.fragments.movie.MoviesAdapter
 import com.example.fragments.movie.network.utils.MovieCall
 import com.example.fragments.movie.network.utils.MoviePopularCall
+import io.reactivex.rxjava3.disposables.CompositeDisposable
 import java.util.Timer
 import java.util.TimerTask
 
 class SearchFragment() : Fragment(), MoviesAdapter.OnMovieItemClickListener {
 
+	private var disposables = CompositeDisposable()
 	private var moviesAdapter: MoviesAdapter = MoviesAdapter(listOf(), this)
 	private var timer = Timer()
 
+	override fun onStart() {
+		super.onStart()
+		fillPopularMovieList()
+	}
+
+	override fun onStop() {
+		disposables.clear()
+		super.onStop()
+	}
+
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		fillPopularMovieList()
 	}
 
 	override fun onCreateView(
@@ -100,22 +111,23 @@ class SearchFragment() : Fragment(), MoviesAdapter.OnMovieItemClickListener {
 	}
 
 	private fun fillMovieList(query: String) {
-		val movieCall = MovieCall()
-		val movies = movieCall.getMovies(query)
-		if (movies!!.isNotEmpty()) {
-			timerSchedule(timer) { moviesAdapter.setMovies(movies) }
-		}
-		else
-		{
-			timerSchedule(timer) {
-				moviesAdapter.clearAdapter()
-				Toast.makeText(
-					requireActivity().applicationContext,
-					"Couldn't find any movies that matches : $query",
-					Toast.LENGTH_LONG
-				).show()
+		disposables.add(
+			MovieCall().getMovies(query).subscribe { movies ->
+				if (movies.isNotEmpty()) {
+					timerSchedule(timer) { moviesAdapter.setMovies(movies) }
+				} else {
+					timerSchedule(timer) {
+						moviesAdapter.clearAdapter()
+						Toast.makeText(
+							requireActivity().applicationContext,
+							"Couldn't find any movies that matches : $query",
+							Toast.LENGTH_LONG
+						).show()
+					}
+				}
 			}
-		}
+		)
+
 	}
 
 	companion object {
