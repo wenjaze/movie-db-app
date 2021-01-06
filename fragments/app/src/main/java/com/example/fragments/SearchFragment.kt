@@ -15,7 +15,6 @@ import com.example.fragments.movie.network.models.Movie
 import com.example.fragments.movie.MoviesAdapter
 import com.example.fragments.movie.network.utils.CallMaker
 import com.example.fragments.movie.network.utils.MovieCall
-import com.example.fragments.movie.network.utils.MoviePopularCall
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import java.util.Timer
 import java.util.TimerTask
