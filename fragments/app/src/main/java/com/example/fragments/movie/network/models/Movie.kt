@@ -1,6 +1,5 @@
 package com.example.fragments.movie.network.models
 
-import android.os.Parcelable
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 

@@ -51,7 +51,7 @@ class SearchFragment() : Fragment(), MoviesAdapter.OnMovieItemClickListener {
 	}
 
 	private fun initSearchBar(view: View) {
-		
+
 		val searchField = view.findViewById<View>(R.id.searchField) as? EditText
 		searchField?.addTextChangedListener(object : TextWatcher {
 			override fun afterTextChanged(s: Editable?) {
