@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.example.fragments.BuildConfig.BASE_URL
+import com.example.fragments.movie.network.utils.CallMaker
 import com.example.fragments.movie.network.utils.MovieDetailsCall
 import com.squareup.picasso.Picasso
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -54,7 +55,7 @@ class SecondFragment : Fragment() {
 		disposables.add(
 
 			id?.let {
-				MovieDetailsCall().getDetails(it).subscribe() { details ->
+				CallMaker().getDetails(it).subscribe() { details ->
 					movie_budget.text =
 						if (details.budget == 0) "No data" else NumberFormat.getInstance().format(details.budget) + " $"
 					movie_title.text = details.title

@@ -110,7 +110,7 @@ class SearchFragment() : Fragment(), MoviesAdapter.OnMovieItemClickListener {
 
 	private fun fillMovieList(query: String) {
 		disposables.add(
-			MovieCall().getMovies(query).subscribe { movies ->
+			CallMaker().getMovies(query).subscribe { movies ->
 				if (movies.isNotEmpty()) {
 					timerSchedule(timer) { moviesAdapter.setMovies(movies) }
 				} else {
