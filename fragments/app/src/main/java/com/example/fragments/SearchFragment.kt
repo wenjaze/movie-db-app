@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fragments.movie.network.models.Movie
 import com.example.fragments.movie.MoviesAdapter
+import com.example.fragments.movie.network.utils.CallMaker
 import com.example.fragments.movie.network.utils.MovieCall
 import com.example.fragments.movie.network.utils.MoviePopularCall
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -105,9 +106,11 @@ class SearchFragment() : Fragment(), MoviesAdapter.OnMovieItemClickListener {
 	}
 
 	private fun fillPopularMovieList() {
-		val popularMovies = MoviePopularCall()
-		val movies = popularMovies.getPopularMovies()
-		moviesAdapter.setMovies(movies)
+		disposables.add(
+			CallMaker().getPopularMovies().subscribe { popular ->
+				moviesAdapter.setMovies(popular)
+			}
+		)
 	}
 
 	private fun fillMovieList(query: String) {
