@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import com.example.fragments.BuildConfig.BASE_URL
 import com.example.fragments.movie.network.utils.CallMaker
-import com.example.fragments.movie.network.utils.MovieDetailsCall
 import com.squareup.picasso.Picasso
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_second.movie_budget
