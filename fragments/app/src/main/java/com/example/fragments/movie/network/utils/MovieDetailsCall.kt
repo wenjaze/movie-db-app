@@ -10,7 +10,6 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 class MovieDetailsCall : CallBuilder() {
-	private lateinit var movieDetails: MovieDetails
 	fun getDetails(id: Int): Observable<MovieDetails> =
 		buildDetailsCall()
 			.getDetails(id, MOVIE_DB_API_KEY)
